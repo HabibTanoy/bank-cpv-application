@@ -21,7 +21,7 @@
         <div class="form-group row">
           <label for="text2" class="col-3 col-form-label">Phone Number</label> 
           <div class="col-9">
-            <input id="text2" name="phone" type="text" class="form-control" value="{{$application->phone_number}}">
+            <input id="text2" name="phone" type="text" class="form-control" value="{{$application->phone_number}}" pattern="\+?(88)?01[3456789][0-9]{8}\b" required>
           </div>
         </div>
         <div class="form-group row">
@@ -58,36 +58,37 @@
           <label class="col-3">Application Type</label> 
           <div class="col-9">
             <div class="custom-control custom-checkbox custom-control-inline">
-              <input id="checkbox_0" type="radio" name="city" class="form-check-input" value="1" {{ $application->type == 1 ? "checked" : "" }}> 
+              <input id="checkbox_0" type="checkbox" name="city[]" class="form-check-input" value="1" {{ $types[0] ? "checked" : "" }}> 
               <label for="checkbox_0" class="">City Amex</label>
             </div>
             <div class="custom-control custom-checkbox custom-control-inline">
-              <input id="checkbox_1" type="radio" name="city" class="form-check-input" value="2" {{ $application->type == 2 ? "checked" : "" }}> 
+              <input id="checkbox_1" type="checkbox" name="city[]" class="form-check-input" value="2" {{ $types[1] ? "checked" : "" }}> 
               <label for="checkbox_1" class="">City Visa</label>
             </div>
             <div class="custom-control custom-checkbox custom-control-inline">
-              <input id="checkbox_2" type="radio" name="city" class="form-check-input" value="3" {{ $application->type == 3 ? "checked" : "" }}> 
+              <input id="checkbox_2" type="checkbox" name="city[]" class="form-check-input" value="3" {{ $types[2] ? "checked" : "" }}> 
               <label for="checkbox_2" class="">City Loan</label>
             </div>
           </div>
         </div>
-        <!-- <div class="form-group row attachment-section">
-          <label class="col-3">Attachments</label> 
+        <!--Guarantor Information-->
+        <h2 class="text-center">Guarantor Information</h2>
+        <div class="form-group row">
+          <label for="text1" class="col-3 col-form-label">Name</label> 
           <div class="col-9">
-            <div class="custom-control custom-checkbox custom-control-inline">
-              <input id="checkbox1_0" type="radio" name="type" class="form-check-input file" value="1" {{ $application->attachments[0]->type == 1 ? "checked" : "" }}> 
-              <label for="checkbox1_0" class="">LOI</label>
-            </div>
-            <div class="custom-control custom-checkbox custom-control-inline">
-              <input id="checkbox1_1" type="radio" name="type" class="form-check-input file" value="2" {{ $application->attachments[0]->type == 2 ? "checked" : "" }}> 
-              <label for="checkbox1_1" class="">Bank Withdrawal Letter</label>
-            </div>
-            <div class="custom-control custom-checkbox custom-control-inline">
-              <input id="checkbox1_2" type="radio" name="type" class="form-check-input file" value="3" {{ $application->attachments[0]->type == 3 ? "checked" : "" }}> 
-              <label for="checkbox1_2" class="">Rental Deed</label>
+            <input id="text1" name="guarantor_name" type="text" class="form-control" value="{{$guarantor_data[0]->nid_name}}">
+          </div>
+        </div>
+        <!-- <div class="row">
+          <div class="col-sm-3">Image</div>
+          <div class="col-sm-9">
+            <div class="custom-file mb-3">
+              <input type="file" class="custom-file-input" name="guarantor_image" id="customFile" name="filename">
+              <label class="custom-file-label" for="customFile">Choose file</label>
             </div>
           </div>
-        </div>  -->
+        </div> -->
+        <!--Attachemnts-->
         <h2 class="text-center">Attachments</h2>
         <div class="row">
           <div class="col-sm-3">LOI</div>
@@ -116,51 +117,26 @@
             </div>
           </div>
         </div>
-        
-        <!-- <div class="custom-file mb-3">
-        <input type="file" class="custom-file-input" name="files[]" id="customFile" name="filename" multiple>
-        <label class="custom-file-label" for="customFile">Choose file</label>
-      </div> -->
         <div class="form-group row">
-          <div class="offset-3 col-9">
-            <button type="submit" class="btn btn-primary">Update</button>
+          <div class="col-md-4 text-center">
+          
+          </div>
+          <div class="col-md-4 text-center">
+          <button type="submit" class="btn btn-primary">Update</button>
+          </div>
+          <div class="col-md-4">
+          
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+          <a href="{{route('application-list')}}" type="submit" class="btn btn-primary">Go List</a>
+          </div>
+          <div class="col-md-6 text-right">
+          <a href="{{route('allfile-show', $application->id)}}" type="submit" class="btn btn-primary">Show Files</a>
           </div>
         </div>
       </form>
   </div>
-  <!--file list-->
-  <h3 class="text-center">File List</h3>
-        <table class="table table-bordered text-center">
-        <thead>
-            <tr>
-            <th scope="col">File</th>
-            <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-        @foreach ($application->attachments as $attachFile)
-        <tr>
-            <td>
-            @if($attachFile->type == 1) 
-                Loi
-            @endif
-            @if($attachFile->type == 2)
-                Bank Withdrawal Letter
-                @endif
-            @if($attachFile->type == 3)
-            Rental Deed
-            @endif
-             - {{$attachFile->id}}</td>
-            <td>
-                <form action='{{route("upload-file-delete", $attachFile->id)}}' method='post'>
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="btn btn-danger">Delete</button>
-                </form>
-            </td>
-        </tr>
-        @endforeach
-        </tbody>
-        </table>
   </body>
 </html>

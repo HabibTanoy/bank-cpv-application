@@ -18,4 +18,10 @@ class Application extends Model
     {
         return $this->hasMany(Attachment::class,'application_id','id');
     }
+    public function types() {
+        return $this->hasmany(Type::class,'application_id','id');
+    }
+    public function guarantors() {
+        return $this->hasmany(GuarantorNid::class,'application_id','id');
+    }
 }

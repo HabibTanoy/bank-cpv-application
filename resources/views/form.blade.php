@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
   <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
-    <title>Form</title>
+    <title>Application Form</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"> 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -16,19 +17,25 @@
         <div class="form-group row">
           <label for="text1" class="col-3 col-form-label">Name</label> 
           <div class="col-9">
-            <input id="text1" name="name" type="text" class="form-control" required="required">
+            <input id="text1" name="name" type="text" class="form-control" value="{{$response_applicant_front_nid_data->name_en}}">
           </div>
         </div>
         <div class="form-group row">
           <label for="text2" class="col-3 col-form-label">Phone Number</label> 
           <div class="col-9">
-            <input id="text2" name="phone" type="text" class="form-control" required="required">
+            <input id="checkNumber" name="phone" type="text" class="form-control" pattern="\+?(88)?01[3456789][0-9]{8}\b" required >
           </div>
         </div>
         <div class="form-group row">
           <label for="text5" class="col-3 col-form-label">Present Address</label> 
           <div class="col-9">
-            <input id="text5" name="address" type="text" class="form-control" required="required">
+            <input id="text5" name="address" type="text" class="form-control" >
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="text5" class="col-3 col-form-label">NID Address</label> 
+          <div class="col-9">
+            <input id="text5" name="nid_address" type="text" class="form-control" value="{{$response_applicant_back_nid_data->address}}">
           </div>
         </div>
         <div class="form-group row">
@@ -52,43 +59,36 @@
         <div class="form-group row">
           <label for="text4" class="col-3 col-form-label">NID</label> 
           <div class="col-9">
-            <input id="text4" name="nid" type="text" class="form-control">
+            <input id="text4" name="nid" type="text" class="form-control" value="{{$response_applicant_front_nid_data->nid_no}}">
           </div>
         </div>
+        <div class="row">
+          <div class="col-sm-3">Image</div>
+          <div class="col-sm-9">
+            <div class="custom-file mb-3">
+              <input type="file" class="custom-file-input" name="image_upload" id="customFile" name="filename">
+              <label class="custom-file-label" for="customFile">Choose file</label>
+            </div>
+          </div>
+        </div>
+        <!--Guarantor Information-->
+        <h2 class="text-center">Guarantor Information</h2>
         <div class="form-group row">
-          <label class="col-3">Application Type</label> 
+          <label for="text1" class="col-3 col-form-label">Name</label> 
           <div class="col-9">
-            <div class="custom-control custom-checkbox custom-control-inline">
-              <input id="checkbox_0" type="radio" name="city" class="form-check-input" value="1"> 
-              <label for="checkbox_0" class="">City Amex</label>
-            </div>
-            <div class="custom-control custom-checkbox custom-control-inline">
-              <input id="checkbox_1" type="radio" name="city" class="form-check-input" value="2"> 
-              <label for="checkbox_1" class="">City Visa</label>
-            </div>
-            <div class="custom-control custom-checkbox custom-control-inline">
-              <input id="checkbox_2" type="radio" name="city" class="form-check-input" value="3"> 
-              <label for="checkbox_2" class="">City Loan</label>
+            <input id="text1" name="guarantor_name" type="text" class="form-control" value="{{isset($response_guarantor_front_data) ? $response_guarantor_front_data->name_en : ''}}">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3">Image</div>
+          <div class="col-sm-9">
+            <div class="custom-file mb-3">
+              <input type="file" class="custom-file-input" name="guarantor_image" id="customFile" name="filename">
+              <label class="custom-file-label" for="customFile">Choose file</label>
             </div>
           </div>
         </div>
-        <!-- <div class="form-group row attachment-section">
-          <label class="col-3">Attachments</label> 
-          <div class="col-9">
-            <div class="custom-control custom-checkbox custom-control-inline">
-              <input id="checkbox1_0" type="radio" name="type" class="form-check-input file" value="1"> 
-              <label for="checkbox1_0" class="">LOI</label>
-            </div>
-            <div class="custom-control custom-checkbox custom-control-inline">
-              <input id="checkbox1_1" type="radio" name="type" class="form-check-input file" value="2"> 
-              <label for="checkbox1_1" class="">Bank Withdrawal Letter</label>
-            </div>
-            <div class="custom-control custom-checkbox custom-control-inline">
-              <input id="checkbox1_2" type="radio" name="type" class="form-check-input file" value="3"> 
-              <label for="checkbox1_2" class="">Rental Deed</label>
-            </div>
-          </div>
-        </div>  -->
+        <!--Attachments-->
         <h2 class="text-center">Attachments</h2>
         <div class="row">
           <div class="col-sm-3">LOI</div>
@@ -124,5 +124,6 @@
         </div>
       </form>
   </div>
+ 
   </body>
 </html>

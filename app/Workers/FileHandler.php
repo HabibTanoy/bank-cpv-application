@@ -7,7 +7,7 @@ class FileHandler{
 
     function __construct()
     {
-        $this->root = '/storage/'; 
+        $this->root = 'storage/'; 
     }
     public function uploadFile($file,$file_name)
     {
@@ -16,6 +16,7 @@ class FileHandler{
             Storage::put($file_name,$file->getContent());
             return $this->root.$file_name;
         }catch(\Exception $exception){
+            dd($exception);
             throw new Exception($exception->getMessage());
         }
     }
