@@ -3,7 +3,7 @@
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
 
-        <div class="sidebar-brand-text mx-3">BariKoi Trace Admin Dashboard</div>
+        <div class="sidebar-brand-text mx-3">CBL Trace</div>
     </a>
 
     <!-- Divider -->
@@ -11,7 +11,7 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="{{route('welcome-page')}}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>
@@ -25,28 +25,35 @@
     </div>
 
     <!-- Nav Item - Pages Collapse Menu -->
+    <!-- <li class="nav-item">
+        <a class="nav-link collapsed" href="{{route('welcome-page')}}">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+    </li> -->
+
     <li class="nav-item">
-        <a class="nav-link collapsed" href="{{route('register-user')}}">
-            <i class="fas fa-fw fa-cog"></i>
-            <span>Register User</span>
+        <a class="nav-link collapsed" href="{{route('application-list')}}">
+            <i class="fas fa-fw fa-list"></i>
+            <span>Application List</span>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="{{route('type-show')}}">
+        <i class="fas fa-user-plus"></i>
+            <span>Application Create</span>
         </a>
     </li>
 
     <!-- <li class="nav-item">
         <a class="nav-link collapsed" href="">
             <i class="fas fa-fw fa-cog"></i>
-            <span>Register Existing User</span>
-        </a>
-    </li> -->
-
-    <!-- <li class="nav-item">
-        <a class="nav-link collapsed" href="">
-            <i class="fas fa-fw fa-cog"></i>
             <span>User's track</span>
         </a>
-    </li> -->
+    </li>
 
-    <!-- <li class="nav-item">
+    <li class="nav-item">
         <a class="nav-link collapsed" href="">
             <i class="fas fa-fw fa-cog"></i>
             <span>Fuel Consumption</span>

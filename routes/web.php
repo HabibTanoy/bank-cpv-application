@@ -10,6 +10,7 @@ Route::post('/nidupload','App\Http\Controllers\InsertDataController@storeNid')->
 Route::get('/form', 'App\Http\Controllers\InsertDataController@showForm')->name('application-form');
 Route::post('/form', 'App\Http\Controllers\InsertDataController@insertApplicationData')->name('insert-data');
 Route::get('/list', 'App\Http\Controllers\ShowApplicationInfoController@showData')->name('application-list');
+Route::get('app-view/{id}', 'App\Http\Controllers\ShowApplicationInfoController@applicationView')->name('application-show');
 Route::get('/update/{id}', 'App\Http\Controllers\ShowApplicationInfoController@formUpdate')->name('show-applicationUpdate');
 Route::post('/update/{id}', 'App\Http\Controllers\ShowApplicationInfoController@applicationUpdated')->name('application-update');
 Route::delete('/delete/{id}', 'App\Http\Controllers\ShowApplicationInfoController@applicationDelete')->name('application-delete');
@@ -30,3 +31,5 @@ Route::group(['middleware' => ['auth:admin']], function() {
 });
 
 });
+
+Route::get('/test','App\Http\Controllers\AdminController@test')->name('test');

@@ -1,16 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <meta charset="utf-8">
-    <title>Form Update</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"> 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  </head>
-  <body>
-  <h2 class="text-center font-weight-bold py-3 text-uppercase">Application Upadte</h2>
+@extends('admin.master')
+@section('content')
+<div>
+    <div class="row mx-3">
+        <div class="col-md-6">
+        <a href="{{route('application-list')}}" type="submit" class="btn btn-primary">Back</a>
+        </div>
+        <div class="col-md-6 text-right">
+        <a href="{{route('allfile-show', $application->id)}}" type="submit" class="btn btn-primary">Show Files</a>
+        </div>
+    </div>
+<h2 class="text-center font-weight-bold py-3 text-uppercase">Application Upadte</h2>
   <div class="d-flex justify-content-center" style="margin: 0 auto;">
-    <form action="" class="w-75" method="POST" enctype="multipart/form-data">
+    <form action="" style="width:86%" method="POST" enctype="multipart/form-data">
     @csrf
         <div class="form-group row">
           <label for="text1" class="col-3 col-form-label">Name</label> 
@@ -81,7 +82,7 @@
           </div>
         </div>
         <!--Guarantor Information-->
-        <h2 class="text-center">Guarantor Information</h2>
+        <h2 class="text-center mb-3">Guarantor Information</h2>
         <div class="form-group row">
           <label for="text1" class="col-3 col-form-label">Name</label> 
           <div class="col-9">
@@ -134,7 +135,7 @@
           </div>
         </div>
         <!--Attachemnts-->
-        <h2 class="text-center">Attachments</h2>
+        <h2 class="text-center mb-3">Attachments</h2>
         <div class="row">
           <div class="col-sm-3">LOI</div>
           <div class="col-sm-9">
@@ -173,15 +174,7 @@
           
           </div>
         </div>
-        <div class="row">
-          <div class="col-md-6">
-          <a href="{{route('application-list')}}" type="submit" class="btn btn-primary">Go List</a>
-          </div>
-          <div class="col-md-6 text-right">
-          <a href="{{route('allfile-show', $application->id)}}" type="submit" class="btn btn-primary">Show Files</a>
-          </div>
-        </div>
       </form>
   </div>
-  </body>
-</html>
+</div>
+@endsection

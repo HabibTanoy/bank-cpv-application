@@ -1,13 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <meta charset="utf-8">
-    <title>Form Update</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"> 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  </head>
-<body>
+@extends('admin.master')
+@section('content')
+<div>
+    <div class="ml-3">
+        <a href="{{route('application-update', $application->id)}}" class="btn btn-primary">Back</a>
+    </div>
 <h3 class="text-center mt-3 mb-4">File List</h3>
         <table class="table table-bordered text-center">
         <thead>
@@ -44,8 +40,5 @@
         @endforeach
         </tbody>
         </table>
-        <div class="text-center">
-        <a href="{{route('application-update', $application->id)}}" class="btn btn-primary">Previous</a>
-        </div>
-</body>
-</html>
+</div>
+@endsection

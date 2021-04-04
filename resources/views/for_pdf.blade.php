@@ -51,7 +51,7 @@
 }
 
 .app_info {
-    margin-top:28px;
+    margin-top:24px;
     font-size: 1rem;
     font-weight: bold;
 }
@@ -98,7 +98,8 @@ div{
   <h2 class="application_tag">Application Form</h2>
     <div class="application_merge">
           <p class="cpv">contact point verification (cpv) form - (for source use)</p>
-          <div class="fileno-field">File No: <input type="text" class="file-style" value="{{$applicants_data->application_id}}"></div>
+          <div class="fileno-field">File No: <input type="text" class="file-style" value="{{$applicants_data->application_id}}">
+          </div>
       <div>
         <p class="app_info">Applicant's Information:</p>
       </div>
@@ -118,7 +119,7 @@ div{
             <img src="{{$applicants_data->applicant_image}}" width="25%" height="170px" alt="BTS"> 
           </td>
         </tr>
-        <tr >
+        <tr>
           <td style="width:30%">
             <div class="">
             <p class="name_tag">Present Address:</p>
@@ -129,7 +130,18 @@ div{
           </div>
           </td>
         </tr>
-        <tr >
+        <tr>
+          <td style="width:30%">
+            <div class="">
+            <p class="name_tag">Phone Number:</p>
+          </td>
+          <td class=''>
+          <div>
+          <div type="text" class="border-style">{{$applicants_data->phone_number}}</div>
+          </div>
+          </td>
+        </tr>
+        <tr>
           <td style="width:30%">
             <div class="">
             <p class="name_tag">Office/Company Name:</p>
@@ -228,57 +240,79 @@ div{
        <div class="tag_info">
         <p>1st Guarantor's Information: (For Loan Application Only)</p>
       </div>
-      <table style="width:100%">
+      <table style="width:100%;">
         <tr>
-          <td style="width:30%; height:50px;">
-            <div class="font_tag">
-            <p class="">Name:</p>
+          <td style="width:30%">
+            <div class="">
+            <p class="name_tag">Name:</p>
+            </div>
           </td>
-          <td class='border-style font_tag'>
-          <div type="text">{{ count($guarantor_data) > 0 ? $guarantor_data[0]->nid_name : "" }} </div>
+          <td style="100%">
+          <div class="">
+            <div type="text" class="border-style">{{ count($guarantor_data) > 0 ? $guarantor_data[0]->name : "" }}</div>
+          </div>
           </td>
           @if($guarantor_data[0]->guarantor_image)
             <td rowspan="7" style="text-align:right">
-              <img src="{{$guarantor_data[0]->guarantor_image}}" width="40%" height="250px" alt="BTS"> 
+              <img src="{{$guarantor_data[0]->guarantor_image}}" width="25%" height="170px" alt="BTS"> 
             </td>
            @else 
            <p hidden>test</p>
           @endif
         </tr>
-        <tr >
-          <td style="width:40%; height:50px;">
-            <div class="font_tag">
-            <p class="">Present Address:</p>
+        <tr>
+          <td style="width:30%">
+            <div class="">
+            <p class="name_tag">Phone Number:</p>
           </td>
-          <td class='border-style'>
-          <div type="text" class=""></div>
+          <td class=''>
+          <div>
+          <div type="text" class="border-style">{{ count($guarantor_data) > 0 ? $guarantor_data[0]->phone_number : "" }}</div>
+          </div>
+          </td>
+        </tr>
+        <tr>
+          <td style="width:30%">
+            <div class="">
+            <p class="name_tag">Present Address:</p>
+          </td>
+          <td class=''>
+          <div>
+          <div type="text" class="border-style">{{ count($guarantor_data) > 0 ? $guarantor_data[0]->present_address : "" }}</div>
+          </div>
           </td>
         </tr>
         <tr >
-          <td style="width:40%; height:50px;">
-            <div class="font_tag">
-            <p class="">Office/Company Name:</p>
+          <td style="width:30%">
+            <div class="">
+            <p class="name_tag">Office/Company Name:</p>
           </td>
-          <td class='border-style'>
-          <div type="text" class=""></div>
-          </td>
-        </tr>
-        <tr >
-          <td style="width:40%; height:50px;">
-            <div class="font_tag">
-            <p class="">Designation:</p>
-          </td>
-          <td class='border-style'>
-          <div type="text" class=""></div>
+          <td class=''>
+          <div>
+            <div type="text" class="border-style">{{ count($guarantor_data) > 0 ? $guarantor_data[0]->office_business_name : "" }}</div>
+          </div>
           </td>
         </tr>
         <tr >
-          <td style="width:45%; height:50px;">
-            <div class="font_tag">
-            <p class="">Business/Office Address:</p>
+          <td style="width:30%">
+            <div class="">
+            <p class="name_tag">Designation:</p>
           </td>
-          <td class='border-style'>
-          <div type="text" class=""></div>
+          <td class=''>
+          <div>
+          <div type="text" class="border-style">{{ count($guarantor_data) > 0 ? $guarantor_data[0]->designation : "" }}</div>
+          </div>
+          </td>
+        </tr>
+        <tr >
+          <td style="width:30%">
+            <div class="">
+            <p class="name_tag">Business/Office Address:</p>
+          </td>
+          <td class=''>
+          <div>
+          <div type="text" class="border-style">{{ count($guarantor_data) > 0 ? $guarantor_data[0]->office_business_address : "" }}</div>
+          </div>
           </td>
         </tr>
       </table>

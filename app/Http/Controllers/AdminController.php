@@ -42,10 +42,14 @@ class AdminController extends Controller
     }
     public function userIndex() {
         $authenticated_user = Auth::user();
-        return view('admin.index', compact('authenticated_user'));
+        return view('admin.application.home', compact('authenticated_user'));
     }
     public function registerNewUser() {
         // dd(1);
         return view('admin.register');
+    }
+    public function test()
+    {
+        return view('admin.application.index');
     }
 }

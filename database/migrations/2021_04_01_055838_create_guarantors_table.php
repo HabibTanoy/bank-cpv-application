@@ -16,10 +16,15 @@ class CreateGuarantorsTable extends Migration
         Schema::create('guarantors', function (Blueprint $table) {
             $table->id();
             $table->string('application_id');
-            $table->string('guarantor_image')->nullable();
-            $table->string('nid_name')->nullable();
-            $table->string('nid_no')->nullable();
+            $table->string('name')->nullable();
+            $table->string('phone_number')->nullable();
+            $table->string('present_address')->nullable();
             $table->string('nid_address')->nullable();
+            $table->string('office_business_name')->nullable();
+            $table->string('office_business_address')->nullable();
+            $table->string('designation')->nullable();
+            $table->string('nid')->nullable();
+            $table->string('guarantor_image')->nullable();
             $table->timestamps();
         });
     }

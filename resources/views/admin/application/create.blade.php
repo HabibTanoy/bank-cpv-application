@@ -1,18 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-
-  <head>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <meta charset="utf-8">
-    <title>Application Form</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"> 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  </head>
-  <body>
-  <h2 class="text-center font-weight-bold py-3 text-uppercase">Application Form</h2>
+@extends('admin.master')
+@section('content')
+    <div>
+    <h2 class="text-center font-weight-bold py-3 text-uppercase">Application Form</h2>
   <div class="d-flex justify-content-center" style="margin: 0 auto;">
-    <form action="{{route('insert-data')}}" class="w-75" method="post" enctype="multipart/form-data">
+    <form action="{{route('insert-data')}}" onsubmit="return myfun()" style="width:86%" method="post" enctype="multipart/form-data">
           @csrf
         <div class="form-group row">
           <label for="text1" class="col-3 col-form-label">Name</label> 
@@ -35,7 +26,7 @@
         <div class="form-group row">
           <label for="text5" class="col-3 col-form-label">NID Address</label> 
           <div class="col-9">
-            <input id="text5" name="nid_address" type="text" class="form-control" value="{{$response_applicant_back_nid_data->address}}">
+            <input id="text5" name="applicant_nid_address" type="text" class="form-control" value="{{$response_applicant_back_nid_data->address}}">
           </div>
         </div>
         <div class="form-group row">
@@ -82,8 +73,9 @@
         <div class="form-group row">
           <label for="text2" class="col-3 col-form-label">Phone Number</label> 
           <div class="col-9">
-            <input id="checkNumber" name="guarantor_phone" type="text" class="form-control" pattern="\+?(88)?01[3456789][0-9]{8}\b" required>
+            <input id="checkNumber" name="guarantor_phone" type="text" class="form-control" >
           </div>
+          <span id="message"></span>
         </div>
         <div class="form-group row">
           <label for="text5" class="col-3 col-form-label">Present Address</label> 
@@ -94,7 +86,7 @@
         <div class="form-group row">
           <label for="text5" class="col-3 col-form-label">NID Address</label> 
           <div class="col-9">
-            <input id="text5" name="nid_address" type="text" class="form-control" value="{{isset($response_guarantor_back_data) ? $response_guarantor_back_data->nid_address : ''}}">
+            <input id="text5" name="nid_address" type="text" class="form-control" value="{{isset($response_guarantor_back_data) ? $response_guarantor_back_data->address : ''}}">
           </div>
         </div>
         <div class="form-group row">
@@ -131,7 +123,7 @@
           </div>
         </div>
         <!--Attachments-->
-        <h2 class="text-center">Attachments</h2>
+        <h2 class="text-center mb-3">Attachments</h2>
         <div class="row">
           <div class="col-sm-3">LOI</div>
           <div class="col-sm-9">
@@ -166,5 +158,21 @@
         </div>
       </form>
   </div>
-  </body>
-</html>
+    </div>
+    <script>
+      function myfun() {
+        let a = document.getElementById("checkNumber").value;
+        if(a === "") {
+          document.getElementById("message").innHTML = "Enter a Number";
+          return false;
+        }
+        if(isNaN(a)) {
+          document.getElementById("message").innHTML = "Only number allowed";
+          return false;
+        }
+        if(a.length < 11) {
+          document.getElementById("message").innHTML = "number must be 11 digit";
+        }
+      }
+    </script>
+@endsection

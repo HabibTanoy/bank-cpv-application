@@ -98,6 +98,6 @@
   @endforeach
   </table>
   <div class="text-center">
-  <a href="{{route('type-show')}}" type="submit" class="btn btn-primary">Create Application</a>
+  <a href="{{route('welcome-page')}}" type="submit" class="btn btn-primary">Create Application</a>
   </div>
 </body>

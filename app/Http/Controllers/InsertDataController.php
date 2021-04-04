@@ -17,10 +17,10 @@ use Session;
 class InsertDataController extends Controller
 {
     public function welcomePage() {
-        return view('home');
+        return view('admin.application.home');
     }
     public function applicationTypeShow() {
-        return view('application_Type');
+        return view('admin.application.application_type');
     }
     public function storeType(Request $request) {
         $store_types = $request->city;
@@ -28,7 +28,7 @@ class InsertDataController extends Controller
         return redirect()->route('nidfile-show');
     }
     public function showNidFile() {
-        return view('nid_fileupload');
+        return view('admin.application.nid_fileupload');
     }
     public function storeNid(Request $request) {
         if($request->has('applicant_front_nid')){
@@ -83,9 +83,8 @@ class InsertDataController extends Controller
             ]);
             $response_data = json_decode($response->getBody()->getContents());
             $response_guarantor_front_data = $response_data->info;
-            return view('form', compact('response_applicant_front_nid_data', 'response_applicant_back_nid_data', 'response_guarantor_front_data'));
         } else {
-            return view('form', compact('response_applicant_front_nid_data', 'response_applicant_back_nid_data'));
+            return view('admin.application.create', compact('response_applicant_front_nid_data', 'response_applicant_back_nid_data'));
         }
 
         if($request->has('guarantor_back_nid')) {
@@ -102,14 +101,14 @@ class InsertDataController extends Controller
             ]);
             $response_data = json_decode($response->getBody()->getContents());
             $response_guarantor_back_data = $response_data->info;
-            return view('form', compact('response_applicant_front_nid_data', 'response_applicant_back_nid_data', 'response_guarantor_back_data'));
+            return view('admin.application.create', compact('response_applicant_front_nid_data', 'response_applicant_back_nid_data','response_guarantor_front_data', 'response_guarantor_back_data'));
         } else {
-            return view('form', compact('response_applicant_front_nid_data', 'response_applicant_back_nid_data', 'response_guarantor_front_data'));
+            return view('admin.application.create', compact('response_applicant_front_nid_data', 'response_applicant_back_nid_data', 'response_guarantor_front_data'));
         }
-        return view('form', compact('response_applicant_front_nid_data', 'response_applicant_back_nid_data'));
+        return view('admin.application.create', compact('response_applicant_front_nid_data', 'response_applicant_back_nid_data'));
     }
     public function showForm() {
-        return view('form');
+        return view('admin.application.create');
     }
 
     public function insertApplicationData(Request $request) {
@@ -124,12 +123,12 @@ class InsertDataController extends Controller
             'name' => $request->name,
             'phone_number' => $request->phone,
             'present_address' => $request->address,
-            'nid_address' => $request->nid_address,
+            'nid_address' => $request->applicant_nid_address,
             'office_business_name' => $request->officeName,
             'office_business_address' => $request->officeAddress,
             'designation' => $request->designation,
             'nid' => $request->nid,
-            'applicant_image' => $image_file_path
+            'applicant_image' => $image_file_path,
         ]);
         $application_id_generator = new ApplicationIdGenerator();
         $application_id = $application_id_generator->ApplicationIdGenerate($insertData->id);
@@ -144,24 +143,34 @@ class InsertDataController extends Controller
                 'type' => $type
             ]);
         }
-        //for guarantor nid data store
+        //for guarantor data store
         if($request->hasFile('guarantor_image')) {           
             $file_name = $request->phone.'_'.rand(100,999);
             $guarantor_image_path = $file_handler->uploadFile($request->file('guarantor_image'),$file_name);
             $store_nid = GuarantorNid::create([
                 'application_id' => $insertData->id,
+                'name' => $request->guarantor_name,
+                'phone_number' => $request->guarantor_phone,
+                'present_address' => $request->guarantor_address,
+                'nid_address' => $request->nid_address,
+                'office_business_name' => $request->guarantor_officeName,
+                'office_business_address' => $request->guarantor_officeAddress,
+                'designation' => $request->guarantor_designation,
+                'nid' => $request->guarantor_nid,
                 'guarantor_image' => $guarantor_image_path,
-                'nid_name' => $request->guarantor_name,
-                'nid_no' => '',
-                'nid_address' => ''
             ]);
         } else {
             $store_nid = GuarantorNid::create([
                 'application_id' => $insertData->id,
+                'name' => $request->guarantor_name,
+                'phone_number' => $request->guarantor_phone,
+                'present_address' => $request->guarantor_address,
+                'nid_address' => '',
+                'office_business_name' => $request->guarantor_officeName,
+                'office_business_address' => $request->guarantor_officeAddress,
+                'designation' => $request->guarantor_designation,
+                'nid' => $request->guarantor_nid,
                 'guarantor_image' => '',
-                'nid_name' => $request->guarantor_name,
-                'nid_no' => '',
-                'nid_address' => ''
             ]);  
         }
         //file upload in db
@@ -170,7 +179,7 @@ class InsertDataController extends Controller
         if ($request->hasFile('loi_files')) {
             foreach($request->file('loi_files') as $file)
             {
-                $file_name = $request->nid.'_'.rand(10000,99999);
+                $file_name = $request->phone.'_'.rand(10000,99999);
                 $file_path = $file_handler->uploadFile($file,$file_name);
                 Attachment::create([
                     'application_id' => $insertData->id,
@@ -183,7 +192,7 @@ class InsertDataController extends Controller
         if ($request->hasFile('bank_withdrawal_files')) {
             foreach($request->file('bank_withdrawal_files') as $file)
             {
-                $file_name = $request->nid.'_'.rand(10000,99999);
+                $file_name = $request->phone.'_'.rand(10000,99999);
                 $file_path = $file_handler->uploadFile($file,$file_name);
                 Attachment::create([
                     'application_id' => $insertData->id,
@@ -195,7 +204,7 @@ class InsertDataController extends Controller
         if ($request->hasFile('rental_deed_files')) {
             foreach($request->file('rental_deed_files') as $file)
             {
-                $file_name = $request->nid.'_'.rand(10000,99999);
+                $file_name = $request->phone.'_'.rand(10000,99999);
                 $file_path = $file_handler->uploadFile($file,$file_name);
                 Attachment::create([
                     'application_id' => $insertData->id,

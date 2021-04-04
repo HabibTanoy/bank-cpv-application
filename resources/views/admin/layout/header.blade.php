@@ -30,7 +30,50 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js" integrity="sha512-AIOTidJAcHBH2G/oZv9viEGXRqDNmfdPVPYOYKGy3fti0xIplnlgMHUGfuNRzC6FkzIo0iIxgFnr9RikFxK+sw==" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.css" integrity="sha512-bYPO5jmStZ9WI2602V2zaivdAnbAhtfzmxnEGh9RwtlI00I9s8ulGe4oBa5XxiC6tCITJH/QG70jswBhbLkxPw==" crossorigin="anonymous" />
 </head>
-
+<style>
+     .table td {
+    vertical-align: inherit;
+  }
+  .table thead th {
+    vertical-align: inherit;
+  }
+  .table td, .table th {
+    padding: 0.1rem;
+  }
+  .font_modify {
+    font-size:14px;
+  }
+  .demo {
+    /* margin-left:-4px; */
+    margin-right: 10px;
+  }
+  .for-ul {
+    margin-bottom:0.1rem;
+    margin-left: -34px;
+  }
+  li {
+    list-style-type: none;
+  }
+  .table-modify td, .table-modify th {
+    padding: 0.3rem;
+  }
+  .table-modify td {
+    padding:10px;
+  }
+  .table-edit td {
+    font-size:14px;
+  }
+  .table-edit .table-edit th {
+    width:-webkit-fill-available;
+    font-size:10px;
+  }
+  .table-edit {
+    width:0%;
+  }
+  .table-modify {
+    width:-webkit-fill-available;
+  }
+</style>
 <body id="page-top">
 
 
