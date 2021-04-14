@@ -5,6 +5,8 @@ use App\Models\Application;
 use App\Models\Attachment;
 use App\Models\Type;
 use App\Models\GuarantorNid;
+use App\Models\CoApplicant;
+use App\Models\SecondGuarantor;
 use Illuminate\Http\Request;
 use App\Workers\FileHandler;
 use PDF;
@@ -25,13 +27,17 @@ class ShowApplicationInfoController extends Controller
         $application_type = Application::with('types')
         ->where('id', $id)
         ->first();
+        $co_applicant_information = CoApplicant::where('application_id', $id)
+        ->first();
         $application_type_data = $application_type->types;
         $types = $this->checkType($application_type_data);
         $application_guarantor = Application::with('guarantors')
         ->where('id', $id)
         ->first();
+        $second_guarantor = SecondGuarantor::where('application_id', $id)
+        ->first();
         $guarantor_data = $application_guarantor->guarantors;
-        return view('admin.application.form_update', compact('application', 'types', 'guarantor_data'));
+        return view('admin.application.form_update', compact('application', 'types', 'guarantor_data', 'co_applicant_information', 'second_guarantor'));
     }
     public function checkType($application_type_data) {
         $new_arr = [0, 0, 0];
@@ -47,72 +53,156 @@ class ShowApplicationInfoController extends Controller
             }
         }
         return $new_arr;
-    }
-    public function applicationUpdated(Request $request, $id) {
-        $file_handler = new FileHandler();
-        if($request->hasFile('applicant_image')) { 
-            $file_name = $request->phone.'_'.rand(1000,9999);
-            $image_file_path = $file_handler->uploadFile($request->file('applicant_image'),$file_name);       
-        $applicationDataUpdate = Application::where('id', $id)
-        ->update([
+    }   
+
+    private function updateApplicant(Request $request, $id, FileHandler $file_handler)
+    {
+        $application_update_data = [
             'name' => $request->name,
             'phone_number' => $request->phone,
             'present_address' => $request->address,
             'office_business_name' => $request->officeName,
             'office_business_address' => $request->officeAddress,
             'designation' => $request->designation,
-            'nid' => $request->nid,
-            'applicant_image' => $image_file_path
-        ]);
-        } else {
-            $applicationDataUpdate = Application::where('id', $id)
-            ->update([
-                'name' => $request->name,
-                'phone_number' => $request->phone,
-                'present_address' => $request->address,
-                'office_business_name' => $request->officeName,
-                'office_business_address' => $request->officeAddress,
-                'designation' => $request->designation,
-                'nid' => $request->nid,
-            ]); 
+            'nid' => $request->nid
+        ];
+        
+        if($request->hasFile('applicant_image')) { 
+            $file_name = $request->phone.'_'.rand(1000,9999);
+            $image_file_path = $file_handler->uploadFile($request->file('applicant_image'),$file_name);
+            $application_update_data['applicant_image'] = $image_file_path;
         }
-        foreach($request->city as $types) {
-            $insertTypes = Type::where('id', $id)
-            ->update([
-                'application_id' => $id,
-                'type' => $types
-            ]);
+        Application::where('id', $id)
+            ->update($application_update_data);
+    }
+
+    private function updateCoApplicant(Request $request, $id, FileHandler $file_handler)
+    {
+        $co_applicant_update = [
+            'name' => $request->co_applicant_name,
+            'phone_number' => $request->co_applicant_phone,
+            'present_address' => $request->co_applicant_address,
+            'office_business_name' => $request->co_applicant_officeName,
+            'office_business_address' => $request->co_applicant_officeAddress,
+            'designation' => $request->co_applicant_designation,
+            'nid_number' => $request->co_applicant_nid,
+        ];
+
+        if($request->hasFile('co_applicant_image')) { 
+            $file_name = $request->phone.'_'.rand(1000,9999);
+            $image_file_path = $file_handler->uploadFile($request->file('co_applicant_image'),$file_name);
+            $application_update_data['co_applicant_image'] = $image_file_path;
         }
-        //guarantor_data_update
-        $file_handler = new FileHandler();
+        CoApplicant::where('application_id', $id)
+            ->update($co_applicant_update);
+    }
+
+    private function updateGuarantor(Request $request, $id, FileHandler $file_handler)
+    {
+        $guarantor_data_update = [
+            'name' => $request->guarantor_name,
+            'phone_number' => $request->guarantor_phone,
+            'present_address' => $request->guarantor_address,
+            'office_business_name' => $request->guarantor_officeName,
+            'office_business_address' => $request->guarantor_officeAddress,
+            'designation' => $request->guarantor_designation,
+            'nid' => $request->guarantor_nid,
+        ];
+
         if($request->hasFile('guarantor_image')) { 
-                $file_name = $request->phone.'_'.rand(1000,9999);
-                $image_file_path = $file_handler->uploadFile($request->file('guarantor_image'),$file_name);       
-            $guarantor_data_update = GuarantorNid::where('id', $id)
-            ->update([
+            $file_name = $request->phone.'_'.rand(1000,9999);
+            $image_file_path = $file_handler->uploadFile($request->file('guarantor_image'),$file_name);
+            $application_update_data['guarantor_image'] = $image_file_path;
+        }
+        GuarantorNid::where('application_id', $id)
+            ->update($guarantor_data_update);
+    }
+
+    private function updateSecondGuarantor(Request $request, $id, FileHandler $file_handler)
+    {
+        $second_guarantor_update = [
+            'application_id' => $id,
+            'name' => $request->second_guarantor_name,
+            'phone_number' => $request->second_guarantor_phone,
+            'present_address' => $request->second_guarantor_address,
+            'office_business_name' => $request->second_guarantor_officeName,
+            'office_business_address' => $request->second_guarantor_officeAddress,
+            'designation' => $request->second_guarantor_designation,
+            'nid_number' => $request->second_guarantor_nid
+        ];
+
+        if($request->hasFile('second_guarantor_image')) { 
+            $file_name = $request->phone.'_'.rand(1000,9999);
+            $image_file_path = $file_handler->uploadFile($request->file('second_guarantor_image'),$file_name);
+            $application_update_data['second_guarantor_image'] = $image_file_path;
+        }
+
+        SecondGuarantor::where('application_id', $id)
+            ->update($second_guarantor_update);
+    }
+
+    public function applicationUpdated(Request $request, $id) {
+        $this->validate($request, [
+            'name' => 'max:255',
+            'phone' => 'regex:/\+?(88)?01[3456789][0-9]{8}\b/',
+            'address' => 'max:255',
+            'officeName' => 'max:255',
+            'officeAddress' => 'max:255',
+            'designation' => 'max:255',
+            'nid' => 'numeric',
+            'loi_files' => 'max:10000',
+            'bank_withdrawal_files' => 'max:10000',
+            'rental_deed_files' => 'max:10000',
+            'applicant_image' => 'image',
+            'co_applicant_name' => 'max:255',
+            'co_applicant_phone' => 'nullable|regex:/\+?(88)?01[3456789][0-9]{8}\b/',
+            'co_applicant_address' => 'max:255',
+            'co_applicant_nid_address' => 'max:255',
+            'co_applicant_officeName' => 'max:255',
+            'co_applicant_officeAddress' => 'max:255',
+            'co_applicant_designation' => 'max:255',
+            'co_applicant_nid' => 'nullable',
+            'co_applicant_image' => 'nullable|image',
+            'guarantor_name' => 'max:255',
+            'guarantor_phone' => 'nullable|regex:/\+?(88)?01[3456789][0-9]{8}\b/',
+            'guarantor_address' => 'max:255',
+            'nid_address' => 'max:255',
+            'guarantor_officeName' => 'max:255',
+            'guarantor_officeAddress' => 'max:255',
+            'guarantor_designation' => 'max:255',
+            'guarantor_nid' => 'nullable',
+            'guarantor_image' => 'nullable|image',
+            'second_guarantor_name' => 'max:255',
+            'second_guarantor_phone' => 'nullable|regex:/\+?(88)?01[3456789][0-9]{8}\b/',
+            'second_guarantor_address' => 'max:255',
+            'second_nid_address' => 'max:255',
+            'second_guarantor_officeName' => 'max:255',
+            'second_guarantor_officeAddress' => 'max:255',
+            'second_guarantor_designation' => 'max:255',
+            'second_guarantor_nid' => 'nullable',
+            'second_guarantor_image' => 'nullable|image',
+        ]);
+        
+        $file_handler = new FileHandler();
+
+        $this->updateApplicant($request, $id, $file_handler);
+        
+        $application = Application::find($id);
+        $application->types()->delete();
+        
+        foreach($request->city as $type) {
+            $insertTypes = Type::create([
                 'application_id' => $id,
-                'name' => $request->guarantor_name,
-                'phone_number' => $request->guarantor_phone,
-                'present_address' => $request->guarantor_address,
-                'office_business_name' => $request->guarantor_officeName,
-                'office_business_address' => $request->guarantor_officeAddress,
-                'designation' => $request->guarantor_designation,
-                'nid' => $request->guarantor_nid,
-                'guarantor_image' => $image_file_path
-            ]);
-        } else {
-            $guarantor_data_update = GuarantorNid::where('id', $id)
-            ->update([
-                'application_id' => $id,
-                'name' => $request->guarantor_name,
-                'phone_number' => $request->guarantor_phone,
-                'present_address' => $request->guarantor_address,
-                'office_business_name' => $request->guarantor_officeName,
-                'office_business_address' => $request->guarantor_officeAddress,
-                'designation' => $request->guarantor_designation,
-                'nid' => $request->guarantor_nid,
+                'type' => $type
             ]);
         }
+
+        //co-applicant update
+        $this->updateCoApplicant($request, $id, $file_handler);
+        //guarantor_data_update
+        $this->updateGuarantor($request, $id, $file_handler);
+        //2nd guarantor update
+        $this->updateSecondGuarantor($request, $id, $file_handler);
         //attachemnts file
         $file_handler = new FileHandler();
 
@@ -159,10 +249,18 @@ class ShowApplicationInfoController extends Controller
         $applicant_data = Application::with('types')
         ->where('id', $id)
         ->first();
-        $guarantor_data = GuarantorNid::where('id', $id)
+        $applicant_attachement = Application::with('attachments')
+        ->where('id', $id)
+        ->first();
+        $co_applicant_information = CoApplicant::where('application_id', $id)
+        ->first();
+        $app_attach = $applicant_attachement->attachments;
+        $guarantor_data = GuarantorNid::where('application_id', $id)
+        ->first();
+        $second_guarantor = SecondGuarantor::where('application_id', $id)
         ->first();
         $for_types = $applicant_data->types;
-        return view('admin.application.application_view', compact('applicant_data', 'guarantor_data', 'for_types'));
+        return view('admin.application.application_view', compact('applicant_data', 'guarantor_data', 'for_types', 'app_attach', 'co_applicant_information', 'second_guarantor'));
     }
     public function applicationDelete($id) {
         $application_delete = Application::where('id', $id)
@@ -181,10 +279,10 @@ class ShowApplicationInfoController extends Controller
         return redirect()->back();
     }
     public function fileList($id) {
-        $application = Application::with('attachments')
+        $application_files = Application::with('attachments')
             ->where('id', $id)
             ->first();
-        return view('admin.application.file_list', compact('application'));
+        return view('admin.application.file_list', compact('application_files'));
     }
     public function generatePDF($id) {
         $applicants_data = Application::where('id', $id)

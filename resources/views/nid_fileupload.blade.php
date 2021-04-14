@@ -21,7 +21,7 @@
   </head>
   <body>
     <div class="file_change">
-    <h2 class="text-center font-weight-bold py-3 text-uppercase mb-5">NID File Upload</h2>
+    <h2 class="text-center font-weight-bold py-3 text-uppercase mb-5">NID File Upload <hr class="hr-edit"></h2>
     <h3 class="text-center mb-3">Applicant NID File Upload</h3>
   <form action="{{route('nid-store')}}" method="post" enctype="multipart/form-data">
         @csrf

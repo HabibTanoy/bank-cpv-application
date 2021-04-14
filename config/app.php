@@ -233,5 +233,4 @@ return [
         'mPDF' => niklasravnsborg\LaravelPdf\Facades\Pdf::class,
 
     ],
-
 ];

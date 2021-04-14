@@ -2,7 +2,7 @@
 @section('content')
 <div>
     <div class="ml-3">
-        <a href="{{route('application-update', $application->id)}}" class="btn btn-primary">Back</a>
+        <a href="{{route('application-update', $application_files->id)}}" class="btn btn-primary">Back</a>
     </div>
 <h3 class="text-center mt-3 mb-4">File List</h3>
         <table class="table table-bordered text-center">
@@ -13,7 +13,7 @@
             </tr>
         </thead>
         <tbody>
-        @foreach ($application->attachments as $attachFile)
+        @foreach ($application_files->attachments as $attachFile)
         <tr>
             <td>
                 <a href="{{url($attachFile->file_path)}}" target="_blank" style="text-decoration:none">

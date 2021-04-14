@@ -5,12 +5,13 @@
         <a href="{{route('type-show')}}" type="submit" class="btn btn-primary">Create Application</a>
       </div>
     <h2 class="text-center my-3 mb-4">Application List</h2>
-<table class="table table-bordered text-center table-edit mx-2">
+    <div class="table-responsive">
+    <table class="table table-bordered text-center mx-2">
   <thead >
     <tr>
       <th scope="col">Application No</th>
       <th scope="col">Name</th>
-      <th scope="col">Phone number</th>
+      <!-- <th scope="col">Phone number</th> -->
       <th scope="col">Address</th>
       <th scope="col">Office/Business Name</th>
       <th scope="col">Office/Business Address</th>
@@ -24,8 +25,8 @@
   @foreach($application_list_data as $application_list)
   <tr>
     <td scope="row">{{$application_list->application_id}}</td>
-    <td style="width:18%">{{$application_list->name}}</td>
-    <td>{{$application_list->phone_number}}</td>
+    <td >{{$application_list->name}}</td>
+    <!-- <td>{{$application_list->phone_number}}</td> -->
     <td>{{$application_list->present_address}}</td>
     <td>{{$application_list->office_business_name}}</td>
     <td>{{$application_list->office_business_address}}</td>
@@ -45,7 +46,7 @@
     </ul>
     @endforeach
     </td>
-    <td style="width:28%">
+    <td>
     <div class="row demo">
     <div class="col-md-3">
             <a href="{{route('application-show', $application_list->id)}}" type="submit" class="btn btn-primary"><i class="fas fa-eye"></i></a>
@@ -69,5 +70,7 @@
   </tbody>
   @endforeach
   </table>
+    </div>
+
     </div>
 @endsection

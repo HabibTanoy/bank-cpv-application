@@ -10,6 +10,7 @@
     <meta name="author" content="">
 
     <title> Barikoi - @yield('title')</title>
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <!-- Custom fonts for this template-->
     <link href="{{\Illuminate\Support\Facades\URL::to('admin/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
     <link
@@ -31,7 +32,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.css" integrity="sha512-bYPO5jmStZ9WI2602V2zaivdAnbAhtfzmxnEGh9RwtlI00I9s8ulGe4oBa5XxiC6tCITJH/QG70jswBhbLkxPw==" crossorigin="anonymous" />
 </head>
 <style>
-     .table td {
+      .table td {
     vertical-align: inherit;
   }
   .table thead th {
@@ -44,8 +45,8 @@
     font-size:14px;
   }
   .demo {
-    /* margin-left:-4px; */
-    margin-right: 10px;
+     margin-left:-4px;
+     margin-right: 10px;
   }
   .for-ul {
     margin-bottom:0.1rem;
@@ -73,7 +74,68 @@
   .table-modify {
     width:-webkit-fill-available;
   }
+  .hr-edit {
+    margin-top: 0px;
+    margin-left:350px;
+    margin-right: 350px;
+    border-top: 3px solid rgba(0,0,0,.1);
+  }
+  .application-info{
+    font-weight: bold;
+  }
+  .hr-edit-nid {
+    margin-top: 0px;
+    margin-left:390px;
+    margin-right: 390px;
+    border-top: 3px solid rgba(0,0,0,.1);
+  } 
+  .applicant-edit {
+    margin-top: 0px;
+    margin-left:380px;
+    margin-right: 380px;
+    border-top: 3px solid rgba(0,0,0,.1);
+  }
+  .co_applicant-edit {
+    margin-top: 0px;
+    margin-left:360px;
+    margin-right:360px;
+    border-top: 3px solid rgba(0,0,0,.1);
+  }
+  .guarantor-edit {
+    margin-top: 0px;
+    margin-left:350px;
+    margin-right:350px;
+    border-top: 3px solid rgba(0,0,0,.1);
+  }
+
+  .second-guarantor-edit {
+    margin-top: 0px;
+    margin-left:360px;
+    margin-right:360px;
+    border-top: 3px solid rgba(0,0,0,.1);
+  }
+  .mb-0 > a {
+    display: block;
+    position: relative;
+  }
+  .mb-0 > a:after {
+    content: "\f078"; 
+    font-family: 'FontAwesome';
+    position: absolute;
+    right: 0;
+  }
+  .mb-0 > a[aria-expanded="true"]:after {
+    content: "\f077";
+  }
+
+#collapse_edit {
+    color: black;
+}
+
+#collapse_edit:hover {
+    text-decoration: none;
+}    
 </style>
-<body id="page-top">
+<body id="page-top" >
 
 

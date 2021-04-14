@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>signup</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -56,24 +56,27 @@ form{
   <div class="global-container">
 	<div class="card login-form">
 	<div class="card-body">
-		<h3 class="card-title text-center">Login</h3>
+		<h3 class="card-title text-center">Registration</h3>
 		<div class="card-text">
-			<form action="{{route('adminlogin-check')}}" method="post">
-      @csrf
+			<form action="{{route('register')}}" method="post">
+                @csrf
 				<!-- to error: add class "has-danger" -->
+                <div class="form-group">
+					<label for="exampleInputEmail1">Name</label>
+					<input type="text" name="name" class="form-control form-control-sm" aria-describedby="emailHelp">
+				</div>
 				<div class="form-group">
-					<label for="exampleInputEmail1">Email address</label>
+					<label>Email address</label>
 					<input type="email" name="email" class="form-control form-control-sm" aria-describedby="emailHelp">
 				</div>
 				<div class="form-group">
 					<label for="exampleInputPassword1">Password</label>
-					<!-- <a href="#" style="float:right;font-size:12px;">Forgot password?</a> -->
 					<input type="password" name="password" class="form-control form-control-sm">
 				</div>
-				<button type="submit" class="btn btn-primary btn-block">Sign in</button>
+				<button type="submit" class="btn btn-primary btn-block">Sign Up</button>
 				
 				<div class="sign-up">
-					Don't have an account? <a href="{{route('admin-signup')}}">Create One</a>
+					Have already an account? <a href="{{route('admin-login')}}">Log in</a>
 				</div>
 			</form>
 		</div>

@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use App\Models\Admin;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
@@ -30,7 +31,7 @@ class AdminController extends Controller
             'email' => $request->email,
             'password' => $request->password
         ])) {
-            return redirect()->intended(route('admin-dashboard'));
+            return redirect()->intended(route('welcome-page'));
         }
         return redirect()->intended(route('admin-login'));
     }
@@ -40,16 +41,22 @@ class AdminController extends Controller
         $request->session()->invalidate();
         return redirect()->route('admin-login');
     }
-    public function userIndex() {
-        $authenticated_user = Auth::user();
-        return view('admin.application.home', compact('authenticated_user'));
+
+    public function registerPage() {
+        return view('admin.signup');
     }
-    public function registerNewUser() {
-        // dd(1);
-        return view('admin.register');
-    }
-    public function test()
-    {
-        return view('admin.application.index');
+    public function register(Request $request) {
+        $this->validate($request, [
+            'name' => 'required|max:255',
+            'email' => 'required|email',
+            'password' => 'required|min:5'
+        ]);
+        $signup = Admin::create([
+            'name' => $request-> name,
+            'email' => $request-> email,
+            'password' => bcrypt($request-> password)
+        ]);
+        Auth::guard('admin')->login($signup);
+        return redirect()->route('welcome-page');
     }
 }
