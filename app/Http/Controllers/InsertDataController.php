@@ -39,19 +39,19 @@ class InsertDataController extends Controller
     }
 
     public function storeNid(Request $request) {
-        $this->validate($request, [
-            'applicant_front_nid' => 'required|image',
-            'applicant_back_nid' => 'required|image',
-            'co_applicant_front_nid' => 'image',
-            'co_applicant_back_nid' => 'image',
-            'guarantor_front_nid' => 'image',
-            'guarantor_back_nid' => 'image',
-            'second_guarantor_front_nid' => 'image',
-            'second_guarantor_back_nid' => 'image'
-        ], [
-            'applicant_front_nid.required' => "Applicated Front NID Needed",
-            "applicant_back_nid.image" => "IMAGE Needed"
-        ]);
+//        $this->validate($request, [
+//            'applicant_front_nid' => 'required|image',
+//            'applicant_back_nid' => 'required|image',
+//            'co_applicant_front_nid' => 'image',
+//            'co_applicant_back_nid' => 'image',
+//            'guarantor_front_nid' => 'image',
+//            'guarantor_back_nid' => 'image',
+//            'second_guarantor_front_nid' => 'image',
+//            'second_guarantor_back_nid' => 'image'
+//        ], [
+//            'applicant_front_nid.required' => "Applicated Front NID Needed",
+//            "applicant_back_nid.image" => "IMAGE Needed"
+//        ]);
 
         $response_applicant_front_nid_data = $this->uploadFileAndFindInfoFromRupantor(
             $request->file('applicant_front_nid'),
