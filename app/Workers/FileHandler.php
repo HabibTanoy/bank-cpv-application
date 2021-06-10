@@ -1,5 +1,5 @@
 <?php
-namespace app\Workers; 
+namespace app\Workers;
 use Illuminate\Support\Facades\Storage;
 
 class FileHandler{
@@ -7,14 +7,14 @@ class FileHandler{
 
     function __construct()
     {
-        $this->root = 'storage/'; 
+        $this->root = 'storage/app/';
     }
     public function uploadFile($file,$file_name)
     {
         try{
             $file_name = $file_name.'.'.$file->getClientOriginalExtension();
             Storage::put($file_name,$file->getContent());
-            return $this->root.$file_name;
+            return storage_path('app/').DIRECTORY_SEPARATOR.$file_name;
         }catch(\Exception $exception){
             dd($exception);
             throw new Exception($exception->getMessage());

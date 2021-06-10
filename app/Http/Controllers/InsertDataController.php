@@ -177,7 +177,6 @@ class InsertDataController extends Controller
         try {
             $file_handler = new FileHandler();
             $path = $file_handler->uploadFile($file, 'temp/tmp_nid');
-            $path = storage_path('app/temp/tmp_nid.jpg');
             $client = new \GuzzleHttp\Client();
             $response = $client->request('POST', $rupantor_api_endpoint, [
                 'multipart' => [
