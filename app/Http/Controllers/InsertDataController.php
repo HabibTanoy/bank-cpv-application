@@ -39,14 +39,14 @@ class InsertDataController extends Controller
 
     public function storeNid(Request $request) {
         $this->validate($request, [
-            'applicant_front_nid' => 'required|image',
-            'applicant_back_nid' => 'required|image',
-            'co_applicant_front_nid' => 'image',
-            'co_applicant_back_nid' => 'image',
-            'guarantor_front_nid' => 'image',
-            'guarantor_back_nid' => 'image',
-            'second_guarantor_front_nid' => 'image',
-            'second_guarantor_back_nid' => 'image'
+            'applicant_front_nid' => 'required|mimes:jpg,png',
+            'applicant_back_nid' => 'required|mimes:jpg,png',
+            'co_applicant_front_nid' => 'mimes:jpg,png',
+            'co_applicant_back_nid' => 'mimes:jpg,png',
+            'guarantor_front_nid' => 'mimes:jpg,png',
+            'guarantor_back_nid' => 'mimes:jpg,png',
+            'second_guarantor_front_nid' => 'mimes:jpg,png',
+            'second_guarantor_back_nid' => 'mimes:jpg,png'
         ], [
             'applicant_front_nid.required' => "Applicated Front NID Needed",
             "applicant_back_nid.image" => "IMAGE Needed"
@@ -240,7 +240,7 @@ class InsertDataController extends Controller
             'co_applicant_officeAddress' => 'max:255',
             'co_applicant_designation' => 'max:255',
             'co_applicant_nid' => 'nullable',
-            'co_applicant_image' => 'nullable|image',
+            'co_applicant_image' => 'nullable|mimes:jpg,png',
             'guarantor_name' => 'max:255',
             'guarantor_phone' => 'nullable|regex:/\+?(88)?01[3456789][0-9]{8}\b/',
             'guarantor_address' => 'max:255',
@@ -249,8 +249,8 @@ class InsertDataController extends Controller
             'guarantor_officeAddress' => 'max:255',
             'guarantor_designation' => 'max:255',
             'guarantor_nid' => 'nullable',
-            'image_upload' => 'required|image',
-            'guarantor_image' => 'nullable|image',
+            'image_upload' => 'required|mimes:jpg,png',
+            'guarantor_image' => 'nullable|mimes:jpg,png',
             'second_guarantor_name' => 'max:255',
             'second_guarantor_phone' => 'nullable|regex:/\+?(88)?01[3456789][0-9]{8}\b/',
             'second_guarantor_address' => 'max:255',
@@ -259,7 +259,7 @@ class InsertDataController extends Controller
             'second_guarantor_officeAddress' => 'max:255',
             'second_guarantor_designation' => 'max:255',
             'second_guarantor_nid' => 'nullable',
-            'second_guarantor_image' => 'nullable|image',
+            'second_guarantor_image' => 'nullable|mimes:jpg,png',
             'loi_files' => 'max:10000',
             'bank_withdrawal_files' => 'max:10000',
             'rental_deed_files' => 'max:10000'

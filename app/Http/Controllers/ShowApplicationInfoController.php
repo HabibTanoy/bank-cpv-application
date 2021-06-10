@@ -153,7 +153,7 @@ class ShowApplicationInfoController extends Controller
             'loi_files' => 'max:10000',
             'bank_withdrawal_files' => 'max:10000',
             'rental_deed_files' => 'max:10000',
-            'applicant_image' => 'image',
+            'applicant_image' => 'mimes:jpg,png',
             'co_applicant_name' => 'max:255',
             'co_applicant_phone' => 'nullable|regex:/\+?(88)?01[3456789][0-9]{8}\b/',
             'co_applicant_address' => 'max:255',
@@ -162,7 +162,7 @@ class ShowApplicationInfoController extends Controller
             'co_applicant_officeAddress' => 'max:255',
             'co_applicant_designation' => 'max:255',
             'co_applicant_nid' => 'nullable',
-            'co_applicant_image' => 'nullable|image',
+            'co_applicant_image' => 'nullable|mimes:jpg,png',
             'guarantor_name' => 'max:255',
             'guarantor_phone' => 'nullable|regex:/\+?(88)?01[3456789][0-9]{8}\b/',
             'guarantor_address' => 'max:255',
@@ -171,7 +171,7 @@ class ShowApplicationInfoController extends Controller
             'guarantor_officeAddress' => 'max:255',
             'guarantor_designation' => 'max:255',
             'guarantor_nid' => 'nullable',
-            'guarantor_image' => 'nullable|image',
+            'guarantor_image' => 'nullable|mimes:jpg,png',
             'second_guarantor_name' => 'max:255',
             'second_guarantor_phone' => 'nullable|regex:/\+?(88)?01[3456789][0-9]{8}\b/',
             'second_guarantor_address' => 'max:255',
@@ -180,7 +180,7 @@ class ShowApplicationInfoController extends Controller
             'second_guarantor_officeAddress' => 'max:255',
             'second_guarantor_designation' => 'max:255',
             'second_guarantor_nid' => 'nullable',
-            'second_guarantor_image' => 'nullable|image',
+            'second_guarantor_image' => 'nullable|mimes:jpg,png',
         ]);
         
         $file_handler = new FileHandler();
