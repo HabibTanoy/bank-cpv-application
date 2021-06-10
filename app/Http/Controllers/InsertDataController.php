@@ -10,6 +10,7 @@ use App\Models\SecondGuarantor;
 use Illuminate\Http\Request;
 use App\Workers\FileHandler;
 use App\Workers\ApplicationIdGenerator;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Http;
 use GuzzleHttp\Psr7;
 use Session;
@@ -63,11 +64,11 @@ class InsertDataController extends Controller
         );
 
         // dd($response_applicant_back_nid_data,
-        // is_array($response_applicant_back_nid_data) 
+        // is_array($response_applicant_back_nid_data)
         // && is_string($response_applicant_back_nid_data["error"]));
 
         if (
-            is_array($response_applicant_front_nid_data) 
+            is_array($response_applicant_front_nid_data)
             && is_string($response_applicant_front_nid_data["error"])
         ) {
             return redirect()->back()->with([
@@ -76,7 +77,7 @@ class InsertDataController extends Controller
         }
 
         if (
-            is_array($response_applicant_back_nid_data) 
+            is_array($response_applicant_back_nid_data)
             && is_string($response_applicant_back_nid_data["error"])
         ) {
             return redirect()->back()->with([
@@ -104,7 +105,7 @@ class InsertDataController extends Controller
 
         if($request->hasFile('guarantor_front_nid')) {
             $response_guarantor_front_data = $this->uploadFileAndFindInfoFromRupantor(
-                $request->file('guarantor_front_nid'), 
+                $request->file('guarantor_front_nid'),
                 config('url.rupantor_api_for_nid_front_ocr')
             );
         } else {
@@ -113,7 +114,7 @@ class InsertDataController extends Controller
 
         if ($request->hasFile('guarantor_back_nid')) {
             $response_guarantor_back_data = $this->uploadFileAndFindInfoFromRupantor(
-                $request->file('guarantor_back_nid'), 
+                $request->file('guarantor_back_nid'),
                 config('url.rupantor_api_for_nid_back_ocr')
             );
         } else {
@@ -138,7 +139,7 @@ class InsertDataController extends Controller
             $response_second_guarantor_back_data = null;
         }
 
-        // dd($response_applicant_front_nid_data, 
+        // dd($response_applicant_front_nid_data,
         //     $response_applicant_back_nid_data,
         //     $response_co_applicant_front_nid_data,
         //     $response_co_applicant_back_nid_data,
@@ -175,8 +176,8 @@ class InsertDataController extends Controller
     {
         try {
             $file_handler = new FileHandler();
-            $path = $file_handler->uploadFile($file, '/temp/tmp_nid');
-
+            $path = $file_handler->uploadFile($file, 'temp/tmp_nid');
+            $path = storage_path('app/temp/tmp_nid.jpg');
             $client = new \GuzzleHttp\Client();
             $response = $client->request('POST', $rupantor_api_endpoint, [
                 'multipart' => [
@@ -188,10 +189,12 @@ class InsertDataController extends Controller
             ]);
             return json_decode($response->getBody()->getContents());
         } catch (ConnectException $exception) {
+            dd($exception);
             return [
                 "error" => $exception->getMessage()
             ];
         } catch (\Exception $exception) {
+            dd($exception);
             return [
                 "error" => $exception->getMessage()
             ];
@@ -206,7 +209,7 @@ class InsertDataController extends Controller
         $response_guarantor_back_data = request('response_guarantor_back_data');
         $response_second_guarantor_front_data = request('response_second_guarantor_front_data');
         $response_second_guarantor_back_data = request('response_second_guarantor_back_data');
-        
+
         return view('admin.application.create', compact(
             'response_applicant_front_nid_data',
             'response_applicant_back_nid_data',
@@ -264,12 +267,12 @@ class InsertDataController extends Controller
             'bank_withdrawal_files' => 'max:10000',
             'rental_deed_files' => 'max:10000'
         ]);
-        
+
         //application data store
             $session_data_fetch = Session::get('request_type');
-            $file_handler = new FileHandler();         
+            $file_handler = new FileHandler();
             $file_name = $request->phone.'_'.rand(10000,99999);
-            $image_file_path = $file_handler->uploadFile($request->file('image_upload'),$file_name);       
+            $image_file_path = $file_handler->uploadFile($request->file('image_upload'),$file_name);
             $insertData = Application::create([
                 'user_id' => rand(1000,9999),
                 'name' => $request->name,
@@ -316,7 +319,7 @@ class InsertDataController extends Controller
                 'co_applicants_image' => $co_applicant_image_path,
             ]);
         }
-        //for guarantor data store    
+        //for guarantor data store
             $guarantor_nid = str_replace(' ',"", $request->guarantor_nid);
             $request->request->add(['nid' => $guarantor_nid]);
 
@@ -354,7 +357,7 @@ class InsertDataController extends Controller
                 'nid_number' => $request->second_guarantor_nid,
                 'second_guarantors_image' => $second_guarantor_image_path,
             ]);
-            }  
+            }
         //file upload in db
         $file_handler = new FileHandler();
 
@@ -395,6 +398,6 @@ class InsertDataController extends Controller
                 ]);
             }
         }
-        return redirect()->route('application-list');   
+        return redirect()->route('application-list');
     }
 }
