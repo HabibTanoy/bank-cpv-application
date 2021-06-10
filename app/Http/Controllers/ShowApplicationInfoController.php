@@ -287,21 +287,30 @@ class ShowApplicationInfoController extends Controller
     public function generatePDF($id) {
         $applicants_data = Application::where('id', $id)
         ->first();
+        $co_applicant = Application::with('co_applicants')
+        ->where('application_id', $id)
+        ->first();
+        // dd($co_applicant);
+        // $co_applicant_data = $co_applicant->co_applicants;
         $guarantors_id = Application::with('guarantors')
         ->where('id', $id)
         ->first();
         $guarantor_data = $guarantors_id->guarantors;
-        $pdf = mPDF::loadView('for_pdf', compact('applicants_data', 'guarantor_data'));
+        $pdf = mPDF::loadView('for_pdf', compact('applicants_data', 'guarantor_data', ));
     
         return $pdf->download('application.pdf');
     }
     public function download($id) {
         $applicants_data = Application::where('id', $id)
         ->first();
+        $co_applicant = Application::with('co_applicants')
+        ->where('application_id', $id)
+        ->first();
+        $co_applicant_data = $co_applicant->co_applicants;
         $guarantors_id = Application::with('guarantors')
         ->where('id', $id)
         ->first();
         $guarantor_data = $guarantors_id->guarantors;
-        return view('for_pdf', compact('applicants_data', 'guarantor_data'));
+        return view('for_pdf', compact('applicants_data', 'guarantor_data', 'co_applicant_data'));
     }
 }
