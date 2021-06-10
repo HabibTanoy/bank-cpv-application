@@ -14,7 +14,7 @@ class FileHandler{
         try{
             $file_name = $file_name.'.'.$file->getClientOriginalExtension();
             Storage::put($file_name,$file->getContent());
-            return storage_path('app/').DIRECTORY_SEPARATOR.$file_name;
+            return storage_path('app').DIRECTORY_SEPARATOR.$file_name;
         }catch(\Exception $exception){
             dd($exception);
             throw new Exception($exception->getMessage());
