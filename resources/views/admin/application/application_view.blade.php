@@ -161,7 +161,7 @@
     </div>
   <table class="table table-bordered table-modify mx-3 mb-5 text-left">
     <thead>
-      <tr>
+      <tr class="text-center">
         <th scope="col" style="width:35%"></th>
         <th scope="col">Details</th>
       </tr>
