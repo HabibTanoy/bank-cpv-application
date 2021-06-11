@@ -18,7 +18,7 @@
     }
     .border-style {
       border-bottom: 1px dotted black;
-      width:100%;
+      width:500px !important;
     }
     .application_tag {
     text-align: center;
@@ -92,6 +92,7 @@ div{
   font-size:30px
 }
 
+
     </style>
   </head>
   <body>
@@ -116,7 +117,7 @@ div{
           </div>
           </td>
           <td rowspan="7" class="" style="text-align:right">
-            <img src="{{$applicants_data->applicant_image}}" width="25%" height="170px" alt="BTS"> 
+            <img src="{{$applicants_data->applicant_image}}" width="22%" height="140px" alt="BTS"> 
           </td>
         </tr>
         <tr>
@@ -181,60 +182,83 @@ div{
        <div class="tag_info">
         <p>Co-applicant's Information: (For Loan Application Only)</p>
       </div>
-      <table style="width:100%">
+      <table style="width:100%;">
         <tr>
-          <td style="width:40%; height:50px;">
-            <div class="font_tag">
-            <p class="">Name:</p>
+          <td style="width:30%">
+            <div class="">
+            <p class="name_tag">Name:</p>
             </div>
           </td>
-          <td class='border-style'>
-          <div type="text" class=""></div>
+          <td style="border-bottom: 1px dotted">
+          <div>
+            <div type="text">{{ isset($co_applicant_data[0]) ? $co_applicant_data[0]->name : "" }}</div>
+          </div>
+          </td>
+          @if(isset($co_applicant_data[0]->co_applicants_image))
+            <td rowspan="7" style="text-align:right">
+              <img src="{{$co_applicant_data[0]->co_applicants_image}}" width="22%" height="140px" alt="BTS"> 
+            </td>
+           @else 
+           <p hidden>test</p>
+          @endif
+        </tr>
+        <tr>
+          <td style="width:30%">
+            <div class="">
+            <p class="name_tag">Present Address:</p>
+          </td>
+          <td style='border-bottom: 1px dotted'>
+          <div>
+          <div type="text" >{{ isset($co_applicant_data[0]) ? $co_applicant_data[0]->present_address : "" }}</div>
+          </div>
           </td>
         </tr>
         <tr>
-          <td style="width:40%; height:50px;">
-            <div class="font_tag">
-            <p class="">Present Address:</p>
-            </div>
+          <td style="width:30%">
+            <div class="">
+            <p class="name_tag">Phone Number:</p>
           </td>
-          <td class='border-style'>
-          <div type="text" class=""></div>
-          </td>
-        </tr>
-        <tr >
-          <td style="width:40%; height:50px;">
-            <div class="font_tag">
-            <p class="">Office/Company Name:</p>
-            </div>
-          </td>
-          <td class='border-style'>
-          <div type="text" class=""></div>
+          <td style='border-bottom: 1px dotted'>
+          <div>
+          <div type="text" >{{ isset($co_applicant_data[0]) ? $co_applicant_data[0]->phone_number : "" }}</div>
+          </div>
           </td>
         </tr>
         <tr >
-          <td style="width:40%; height:50px;">
-            <div class="font_tag">
-            <p class="">Designation:</p>
-            </div>
+          <td style="width:30%">
+            <div class="">
+            <p class="name_tag">Office/Company Name:</p>
           </td>
-          <td class='border-style'>
-          <div type="text" class=""></div>
+          <td style='border-bottom: 1px dotted'>
+          <div>
+            <div type="text" >{{ isset($co_applicant_data[0]) ? $co_applicant_data[0]->office_business_name : "" }}</div>
+          </div>
           </td>
         </tr>
         <tr >
-          <td style="width:45%; height:50px;">
-            <div class="font_tag">
-            <p class="">Business/Office Address:</p>
-            </div>
+          <td style="width:30%">
+            <div class="">
+            <p class="name_tag">Designation:</p>
           </td>
-          <td class='border-style'>
-          <div type="text" class=""></div>
+          <td style='border-bottom: 1px dotted'>
+          <div>
+          <div type="text" >{{ isset($co_applicant_data[0]) ? $co_applicant_data[0]->designation : "" }}</div>
+          </div>
+          </td>
+        </tr>
+        <tr >
+          <td style="width:30%">
+            <div class="">
+            <p class="name_tag">Business/Office Address:</p>
+          </td>
+          <td style='border-bottom: 1px dotted'>
+          <div>
+          <div type="text" >{{ isset($co_applicant_data[0]) ? $co_applicant_data[0]->office_business_address : "" }}</div>
+          </div>
           </td>
         </tr>
       </table>
     </div>
-       </div>
        <!--For Co-applicant's only-->
        <div class="application_merge">
        <div class="tag_info">
@@ -254,22 +278,11 @@ div{
           </td>
           @if($guarantor_data[0]->guarantor_image)
             <td rowspan="7" style="text-align:right">
-              <img src="{{$guarantor_data[0]->guarantor_image}}" width="25%" height="170px" alt="BTS"> 
+              <img src="{{$guarantor_data[0]->guarantor_image}}" width="22%" height="140px" alt="BTS"> 
             </td>
            @else 
            <p hidden>test</p>
           @endif
-        </tr>
-        <tr>
-          <td style="width:30%">
-            <div class="">
-            <p class="name_tag">Phone Number:</p>
-          </td>
-          <td class=''>
-          <div>
-          <div type="text" class="border-style">{{ count($guarantor_data) > 0 ? $guarantor_data[0]->phone_number : "" }}</div>
-          </div>
-          </td>
         </tr>
         <tr>
           <td style="width:30%">
@@ -279,6 +292,17 @@ div{
           <td class=''>
           <div>
           <div type="text" class="border-style">{{ count($guarantor_data) > 0 ? $guarantor_data[0]->present_address : "" }}</div>
+          </div>
+          </td>
+        </tr>
+        <tr>
+          <td style="width:30%">
+            <div class="">
+            <p class="name_tag">Phone Number:</p>
+          </td>
+          <td class=''>
+          <div>
+          <div type="text" class="border-style">{{ count($guarantor_data) > 0 ? $guarantor_data[0]->phone_number : "" }}</div>
           </div>
           </td>
         </tr>
@@ -322,50 +346,79 @@ div{
        <div class="tag_info">
         <p>2nd Guarantor's Information's Information: (For Loan Application Only)</p>
       </div>
-      <table style="width:100%">
-        <tr >
-          <td style="width:40%; height:50px;">
-            <div class="font_tag">
-            <p class="">Name:</p>
+      <table style="width:100%;">
+        <tr>
+          <td style="width:30%">
+            <div class="">
+            <p class="name_tag">Name:</p>
+            </div>
           </td>
-          <td class='border-style'>
-          <div type="text" class=""></div>
+          <td style="100%">
+          <div style="border-bottom: 1px dotted">
+            <div type="text">{{ isset($second_guarantor_data[0]) ? $second_guarantor_data[0]->name : "" }}</div>
+          </div>
+          </td>
+          @if(isset($second_guarantor_data[0]->second_guarantors_image))
+            <td rowspan="7" style="text-align:right">
+              <img src="{{$second_guarantor_data[0]->second_guarantors_image}}" width="22%" height="140px" alt="BTS"> 
+            </td>
+           @else 
+           <p hidden>test</p>
+          @endif
+        </tr>
+        <tr>
+          <td style="width:30%">
+            <div class="">
+            <p class="name_tag">Present Address:</p>
+          </td>
+          <td style="border-bottom: 1px dotted">
+          <div>
+          <div type="text" >{{ isset($second_guarantor_data[0]) ? $second_guarantor_data[0]->present_address : "" }}</div>
+          </div>
+          </td>
+        </tr>
+        <tr>
+          <td style="width:30%">
+            <div class="">
+            <p class="name_tag">Phone Number:</p>
+          </td>
+          <td style="border-bottom: 1px dotted">
+          <div>
+          <div type="text" >{{ isset($second_guarantor_data[0]) ? $second_guarantor_data[0]->phone_number : "" }}</div>
+          </div>
           </td>
         </tr>
         <tr >
-          <td style="width:40%; height:50px;">
-            <div class="font_tag">
-            <p class="">Present Address:</p>
+          <td style="width:30%">
+            <div class="">
+            <p class="name_tag">Office/Company Name:</p>
           </td>
-          <td class='border-style'>
-          <div type="text" class=""><div>
-          </td>
-        </tr>
-        <tr >
-          <td style="width:40%; height:50px;">
-            <div class="font_tag">
-            <p class="">Office/Company Name:</p>
-          </td>
-          <td class='border-style'>
-          <div type="text" class=""></div>
+          <td style="border-bottom: 1px dotted">
+          <div>
+            <div type="text" >{{ isset($second_guarantor_data[0]) ? $second_guarantor_data[0]->office_business_name : "" }}</div>
+          </div>
           </td>
         </tr>
         <tr >
-          <td style="width:40%; height:50px;">
-            <div class="font_tag">
-            <p class="">Designation:</p>
+          <td style="width:30%">
+            <div class="">
+            <p class="name_tag">Designation:</p>
           </td>
-          <td class='border-style'>
-          <div type="text" class=""></div>
+          <td style="border-bottom: 1px dotted">
+          <div>
+          <div type="text" >{{ isset($second_guarantor_data[0]) ? $second_guarantor_data[0]->designation : "" }}</div>
+          </div>
           </td>
         </tr>
         <tr >
-          <td style="width:45%; height:50px;">
-            <div class="font_tag">
-            <p class="">Business/Office Address:</p>
+          <td style="width:30%">
+            <div class="">
+            <p class="name_tag">Business/Office Address:</p>
           </td>
-          <td class='border-style'>
-          <div type="text" class=""></div>
+          <td style="border-bottom: 1px dotted">
+          <div>
+          <div type="text" >{{ isset($second_guarantor_data[0]) ? $second_guarantor_data[0]->office_business_address : "" }}</div>
+          </div>
           </td>
         </tr>
       </table>

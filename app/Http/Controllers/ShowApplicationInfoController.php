@@ -87,12 +87,12 @@ class ShowApplicationInfoController extends Controller
             'designation' => $request->co_applicant_designation,
             'nid_number' => $request->co_applicant_nid,
         ];
-
         if($request->hasFile('co_applicant_image')) { 
             $file_name = $request->phone.'_'.rand(1000,9999);
             $image_file_path = $file_handler->uploadFile($request->file('co_applicant_image'),$file_name);
-            $application_update_data['co_applicant_image'] = $image_file_path;
+            $co_applicant_update['co_applicants_image'] = $image_file_path;
         }
+
         CoApplicant::where('application_id', $id)
             ->update($co_applicant_update);
     }
@@ -112,7 +112,7 @@ class ShowApplicationInfoController extends Controller
         if($request->hasFile('guarantor_image')) { 
             $file_name = $request->phone.'_'.rand(1000,9999);
             $image_file_path = $file_handler->uploadFile($request->file('guarantor_image'),$file_name);
-            $application_update_data['guarantor_image'] = $image_file_path;
+            $guarantor_data_update['guarantor_image'] = $image_file_path;
         }
         GuarantorNid::where('application_id', $id)
             ->update($guarantor_data_update);
@@ -134,7 +134,7 @@ class ShowApplicationInfoController extends Controller
         if($request->hasFile('second_guarantor_image')) { 
             $file_name = $request->phone.'_'.rand(1000,9999);
             $image_file_path = $file_handler->uploadFile($request->file('second_guarantor_image'),$file_name);
-            $application_update_data['second_guarantor_image'] = $image_file_path;
+            $second_guarantor_update['second_guarantors_image'] = $image_file_path;
         }
 
         SecondGuarantor::where('application_id', $id)
@@ -287,16 +287,19 @@ class ShowApplicationInfoController extends Controller
     public function generatePDF($id) {
         $applicants_data = Application::where('id', $id)
         ->first();
-        $co_applicant = Application::with('co_applicants')
-        ->where('application_id', $id)
-        ->first();
-        // dd($co_applicant);
-        // $co_applicant_data = $co_applicant->co_applicants;
+        $co_applicant_data = $applicants_data->co_applicant;
+        //  dd($co_applicant);
+       // $co_applicant_data = $co_applicant->co_applicants;
         $guarantors_id = Application::with('guarantors')
         ->where('id', $id)
         ->first();
         $guarantor_data = $guarantors_id->guarantors;
-        $pdf = mPDF::loadView('for_pdf', compact('applicants_data', 'guarantor_data', ));
+
+        // $second_guarantor_id = Application::with('second_guarantor')
+        // ->where('id', $id)
+        // ->first();
+        $second_guarantor_data = $applicants_data->second_guarantor;
+        $pdf = mPDF::loadView('for_pdf', compact('applicants_data', 'guarantor_data', 'co_applicant_data', 'second_guarantor_data'));
     
         return $pdf->download('application.pdf');
     }

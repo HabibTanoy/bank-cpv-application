@@ -50,7 +50,7 @@ class InsertDataController extends Controller
             'second_guarantor_back_nid' => 'mimes:jpg,png'
         ], [
             'applicant_front_nid.required' => "Applicated Front NID Needed",
-            "applicant_back_nid.image" => "IMAGE Needed"
+            "applicant_back_nid.image" => "Applicant Image needed"
         ]);
 
         $response_applicant_front_nid_data = $this->uploadFileAndFindInfoFromRupantor(
