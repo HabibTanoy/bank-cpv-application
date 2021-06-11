@@ -353,8 +353,8 @@ div{
             <p class="name_tag">Name:</p>
             </div>
           </td>
-          <td style="100%">
-          <div style="border-bottom: 1px dotted">
+          <td style="border-bottom: 1px dotted">
+          <div >
             <div type="text">{{ isset($second_guarantor_data[0]) ? $second_guarantor_data[0]->name : "" }}</div>
           </div>
           </td>
