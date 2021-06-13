@@ -9,8 +9,8 @@
     <div class="col-sm-3">NID Front Side</div>
       <div class="col-sm-9">
       <div class="custom-file mb-3">
-      <input type="file" class="custom-file-input" name="applicant_front_nid" id="customFile" name="filename">
-      <label class="custom-file-label" for="customFile">Choose file</label>
+      <input type="file" class="form-control-file border" name="applicant_front_nid" id="customFile" name="filename">
+{{--      <label class="" for="customFile">Choose file</label>--}}
       @if ($errors->has('applicant_front_nid'))
       {{ $errors->first('applicant_front_nid') }}
       @endif
