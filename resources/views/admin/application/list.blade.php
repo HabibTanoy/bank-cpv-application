@@ -47,23 +47,24 @@
     @endforeach
     </td>
     <td>
-    <div class="row demo">
-    <div class="col-md-3">
-            <a href="{{route('application-show', $application_list->id)}}" type="submit" class="btn btn-primary"><i class="fas fa-eye"></i></a>
-        </div>
-        <div class="col-md-3">
-            <a href="{{route('application-update', $application_list->id)}}" type="submit" class="btn btn-primary"><i class="fa fa-edit"></i></a>
-        </div>
-        <div class="col-md-3">
+    <div class="btn-group" role="group" aria-label="Basic example">
+            <div style="padding:2px">
+            <a href="{{route('application-show', $application_list->id)}}" type="submit" class="btn btn-primary rounded"><i class="fas fa-eye"></i></a>
+            </div>
+            <div style="padding:2px">
+            <a href="{{route('application-update', $application_list->id)}}" type="submit" class="btn btn-primary rounded"><i class="fa fa-edit"></i></a>
+            </div>
+            <div style="padding:2px">
           <form action="{{route('application-delete', $application_list->id)}}" method='post'>
           @csrf
           @method('DELETE')
-          <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+          <button type="submit" class="btn btn-danger rounded"><i class="fa fa-trash"></i></button>
           </form>
+          </div>
+          <div style="padding:2px">
+        <a href="{{route('pdf-download', $application_list->id)}}" class="btn btn-primary rounded"><i class="fa fa-download"></i></a>
         </div>
-        <div class="col-md-3">
-        <a href="{{route('pdf-download', $application_list->id)}}" class="btn btn-primary"><i class="fa fa-download"></i></a>
-        </div>
+    
     <div>
     </td>
   </tr>

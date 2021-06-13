@@ -98,8 +98,8 @@
           <div class="col-sm-3">Image</div>
           <div class="col-sm-9">
             <div class="custom-file mb-3">
-              <input type="file" class="custom-file-input" name="applicant_image" id="customFile" name="filename">
-              <label class="custom-file-label" for="customFile">Choose file</label>
+              <input type="file" class="form-control-file border" name="applicant_image" id="customFile" name="filename">
+              <!-- <label class="custom-file-label" for="customFile">Choose file</label> -->
             </div>
           </div>
         </div>
@@ -174,8 +174,8 @@
           <div class="col-sm-3">Image</div>
           <div class="col-sm-9">
             <div class="custom-file mb-3">
-              <input type="file" class="custom-file-input" name="co_applicant_image" id="customFile" name="filename">
-              <label class="custom-file-label" for="customFile">Choose file</label>
+              <input type="file" class="form-control-file border" name="co_applicant_image" id="customFile" name="filename">
+              <!-- <label class="custom-file-label" for="customFile">Choose file</label> -->
             </div>
           </div>
         </div>
@@ -250,8 +250,8 @@
           <div class="col-sm-3">Image</div>
           <div class="col-sm-9">
             <div class="custom-file mb-3">
-              <input type="file" class="custom-file-input" name="guarantor_image" id="customFile" name="filename">
-              <label class="custom-file-label" for="customFile">Choose file</label>
+              <input type="file" class="form-control-file border" name="guarantor_image" id="customFile" name="filename">
+              <!-- <label class="custom-file-label" for="customFile">Choose file</label> -->
             </div>
           </div>
         </div>
@@ -326,8 +326,8 @@
           <div class="col-sm-3">Image</div>
           <div class="col-sm-9">
             <div class="custom-file mb-3">
-              <input type="file" class="custom-file-input" name="second_guarantor_image" id="customFile" name="filename">
-              <label class="custom-file-label" for="customFile">Choose file</label>
+              <input type="file" class="form-control-file border" name="second_guarantor_image" id="customFile" name="filename">
+              <!-- <label class="custom-file-label" for="customFile">Choose file</label> -->
             </div>
           </div>
         </div>
@@ -339,8 +339,8 @@
           <div class="col-sm-3">LOI</div>
           <div class="col-sm-9">
             <div class="custom-file mb-3">
-              <input type="file" class="custom-file-input" name="loi_files[]" id="customFile" name="filename" multiple>
-              <label class="custom-file-label" for="customFile">Choose file</label>
+              <input type="file" class="form-control-file border" name="loi_files[]" id="customFile" name="filename" multiple>
+              <!-- <label class="custom-file-label" for="customFile">Choose file</label> -->
             </div>
           </div>
         </div>
@@ -348,8 +348,8 @@
           <div class="col-sm-3">Bank Withdrawal Letter</div>
           <div class="col-sm-9">
             <div class="custom-file mb-3">
-              <input type="file" class="custom-file-input" name="bank_withdrawal_files[]" id="customFile" name="filename" multiple>
-              <label class="custom-file-label" for="customFile">Choose file</label>
+              <input type="file" class="form-control-file border" name="bank_withdrawal_files[]" id="customFile" name="filename" multiple>
+              <!-- <label class="custom-file-label" for="customFile">Choose file</label> -->
             </div>
           </div>
         </div>
@@ -357,8 +357,8 @@
           <div class="col-sm-3">Rental Deed</div>
           <div class="col-sm-9">
             <div class="custom-file mb-3">
-              <input type="file" class="custom-file-input" name="rental_deed_files[]" id="customFile" name="filename" multiple>
-              <label class="custom-file-label" for="customFile">Choose file</label>
+              <input type="file" class="form-control-file border" name="rental_deed_files[]" id="customFile" name="filename" multiple>
+              <!-- <label class="custom-file-label" for="customFile">Choose file</label> -->
             </div>
           </div>
         </div>
