@@ -4,8 +4,11 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 //admin route
-Route::get('/', function() {
-    return redirect()->route('admin-login');
+//Route::get('/', function() {
+//    return redirect()->route('admin-login');
+//});
+Route::get('/',function (){
+    return response()->json(['Message' => 'Welcome to CBL Trace api!']);
 });
 Route::group(['prefix' => 'admin'], function() {
 
