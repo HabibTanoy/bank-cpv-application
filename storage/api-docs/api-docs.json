@@ -1,0 +1,856 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "CBL Trace API DOCUMENTATION",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/application-create": {
+            "post": {
+                "tags": [
+                    "CBL Trace API"
+                ],
+                "summary": "Create",
+                "description": "Create Applications",
+                "operationId": "uploadFile",
+                "consumes": "multipart/form-data",
+                "parameters": [{
+                    "name": "city[]",
+                    "in": "path",
+                    "description": "Enter Application Type",
+                    "type": "number"
+                }, {
+                    "name": "name",
+                    "in": "path",
+                    "description": "Enter Applicant Name",
+                    "type": "text"
+                },{
+                        "name": "phone",
+                        "in": "path",
+                        "description": "Enter Applicant phone number",
+                        "type": "number"
+                    },{
+                    "name": "address",
+                    "in": "path",
+                    "description": "Enter Applicant address",
+                    "type": "text"
+                },{
+                    "name": "officeName",
+                    "in": "path",
+                    "description": "Enter Applicant Office Name",
+                    "type": "text"
+                },{
+                    "name": "officeAddress",
+                    "in": "path",
+                    "description": "Enter Applicant Office Address",
+                    "type": "text"
+                },{
+                    "name": "designation",
+                    "in": "path",
+                    "description": "Enter Applicant Designation",
+                    "type": "text"
+                },{
+                    "name": "imgae_upload",
+                    "in": "formData",
+                    "description": "Applicant Image Upload",
+                    "required": false,
+                    "type": "file"
+                },{
+                    "name": "co_applicant_name",
+                    "in": "path",
+                    "description": "Enter Co-Applicant Name",
+                    "type": "text"
+                },{
+                    "name": "co_applicant_phone",
+                    "in": "path",
+                    "description": "Enter Co-Applicant Number",
+                    "type": "number"
+                },{
+                    "name": "co_applicant_address",
+                    "in": "path",
+                    "description": "Enter Co-Applicant Address",
+                    "type": "text"
+                },{
+                    "name": "co_applicant_officeName",
+                    "in": "path",
+                    "description": "Enter Co-Applicant Office Name",
+                    "type": "text"
+                },{
+                    "name": "co_applicant_designation",
+                    "in": "path",
+                    "description": "Enter Co-Applicant Designation",
+                    "type": "text"
+                },{
+                    "name": "co_applicant_image",
+                    "in": "formData",
+                    "description": "Co-Applicant Image Upload",
+                    "required": false,
+                    "type": "file"
+                }
+                ],
+                "requestBody": {
+                    "description": "Application Information provides",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "city[]",
+                                    "name",
+                                    "phone",
+                                    "address",
+                                    "officeName",
+                                    "officeAddress",
+                                    "designation",
+                                    "co_applicant_name",
+                                    "co_applicant_phone",
+                                    "co_applicant_address",
+                                    "co_applicant_officeName",
+                                    "co_applicant_designation",
+                                    "guarantor_name",
+                                    "guarantor_phone",
+                                    "guarantor_address",
+                                    "guarantor_officeName",
+                                    "guarantor_officeAddress",
+                                    "guarantor_designation",
+                                    "second_guarantor_name",
+                                    "second_guarantor_phone",
+                                    "second_guarantor_address"
+                                ],
+                                "properties": {
+                                    "city[]": {
+                                        "type": "string",
+                                        "format": "number",
+                                        "example": "1"
+                                    },
+                                    "name": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "Ratul"
+                                    },
+                                    "phone": {
+                                        "type": "string",
+                                        "format": "number",
+                                        "example": "01722105963"
+                                    },
+                                    "address": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "Wasi Tower, House 572/K, Matikata Main Road, Matikata, Dhaka Cantonment, Dhaka"
+                                    },
+                                    "officeName": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "Barikoi Technologies Limited"
+                                    },
+                                    "officeAddress": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "Wasi Tower, House 572/K, Matikata Main Road, Matikata, Dhaka Cantonment, Dhaka"
+                                    },
+                                    "designation": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "Jr. Software Engineer"
+                                    },
+                                    "co_applicant_name": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "Sadiq"
+                                    },
+                                    "co_applicant_phone": {
+                                        "type": "string",
+                                        "format": "number",
+                                        "example": "01722105963"
+                                    },
+                                    "co_applicant_address": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "House 416/2, Iqbal Road, West Shewrapara, Shewrapara, Mirpur, Dhaka"
+                                    },
+                                    "co_applicant_officeName": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "Barikoi Technologies Limited"
+                                    },
+                                    "co_applicant_officeAddress": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "Wasi Tower, House 572/K, Matikata Main Road, Matikata, Dhaka Cantonment, Dhaka"
+                                    },
+                                    "co_applicant_designation": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "Jr. SQA Engineer"
+                                    },
+                                    "guarantor_name": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "Binoy"
+                                    },
+                                    "guarantor_phone": {
+                                        "type": "string",
+                                        "format": "number",
+                                        "example": "01681906756"
+                                    },
+                                    "guarantor_address": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "House 572/K, Matikata Main Road, Matikata, Dhaka Cantonment, Dhaka"
+                                    },
+                                    "guarantor_officeName": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "Barikoi Technologies Limited"
+                                    },
+                                    "guarantor_officeAddress": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "House 572/K, Matikata Main Road, Matikata, Dhaka Cantonment, Dhaka"
+                                    },
+                                    "guarantor_designation": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "Sales"
+                                    },
+                                    "second_guarantor_name": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "Sojib"
+                                    },
+                                    "second_guarantor_phone": {
+                                        "type": "string",
+                                        "format": "number",
+                                        "example": "01971906756"
+                                    },
+                                    "second_guarantor_address": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "House 416/2, Iqbal Road, West Shewrapara, Shewrapara, Mirpur, Dhaka"
+                                    },
+                                    "second_guarantor_officeName": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "Barikoi Technologies Limited"
+                                    },
+                                    "second_guarantor_officeAddress": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "House 572/K, Matikata Main Road, Matikata, Dhaka Cantonment, Dhaka"
+                                    },
+                                    "second_guarantor_designation": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "Jr. Software Engineer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "data": {
+                                            "application": {
+                                                "id": 1533,
+                                                "application_id": "CS-4534642"
+                                            }
+                                        },
+                                        "message": "Success",
+                                        "status": 200
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/application-list": {
+            "get": {
+                "tags": [
+                    "CBL Trace API"
+                ],
+                "summary": "Application list",
+                "description": "list of application",
+                "operationId": "",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "id": [
+                                            {
+                                                "id": 35,
+                                                "user_id": "7862",
+                                                "application_id": "0802202235",
+                                                "name": "Ratul",
+                                                "phone_number": "01722105963",
+                                                "present_address": "house 432/1, Iqbal Road, shewrapra",
+                                                "office_business_name": "barikoi",
+                                                "office_business_address": "house 432/1, Iqbal Road, shewrapra",
+                                                "designation": "Jr. Software Eng.",
+                                                "applicant_image": "storage/01722105963_35160.jpg",
+                                                "created_at": "2022-02-08T11:04:02.000000Z",
+                                                "updated_at": "2022-02-08T11:04:02.000000Z",
+                                                "types": [
+                                                    {
+                                                        "id": 29,
+                                                        "application_id": "35",
+                                                        "type": "1",
+                                                        "created_at": "2022-02-08T11:04:02.000000Z",
+                                                        "updated_at": "2022-02-08T11:04:02.000000Z"
+                                                    },
+                                                    {
+                                                        "id": 30,
+                                                        "application_id": "35",
+                                                        "type": "3",
+                                                        "created_at": "2022-02-08T11:04:02.000000Z",
+                                                        "updated_at": "2022-02-08T11:04:02.000000Z"
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "message": "Application list",
+                                        "status": 200
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/application-details/{id}": {
+            "get": {
+                "tags": [
+                    "CBL Trace API"
+                ],
+                "summary": "Application Details",
+                "description": "Application Details",
+                "operationId": "",
+                "parameters": [{
+                    "name": "id",
+                    "in": "path",
+                    "description": "Enter Application Id",
+                    "type": "number"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "id": {
+                                            "id": 35,
+                                            "user_id": "7862",
+                                            "application_id": "0802202235",
+                                            "name": "Ratul",
+                                            "phone_number": "01722105963",
+                                            "present_address": "house 432/1, Iqbal Road, shewrapra",
+                                            "office_business_name": "barikoi",
+                                            "office_business_address": "house 432/1, Iqbal Road, shewrapra",
+                                            "designation": "Jr. Software Eng.",
+                                            "applicant_image": "storage/01722105963_35160.jpg",
+                                            "created_at": "2022-02-08T11:04:02.000000Z",
+                                            "updated_at": "2022-02-08T11:04:02.000000Z",
+                                            "types": [
+                                                {
+                                                    "id": 29,
+                                                    "application_id": "35",
+                                                    "type": "1",
+                                                    "created_at": "2022-02-08T11:04:02.000000Z",
+                                                    "updated_at": "2022-02-08T11:04:02.000000Z"
+                                                },
+                                                {
+                                                    "id": 30,
+                                                    "application_id": "35",
+                                                    "type": "3",
+                                                    "created_at": "2022-02-08T11:04:02.000000Z",
+                                                    "updated_at": "2022-02-08T11:04:02.000000Z"
+                                                }
+                                            ],
+                                            "attachments": [
+                                                {
+                                                    "id": 4,
+                                                    "application_id": "35",
+                                                    "file_path": "storage/01722105963_67803.pdf",
+                                                    "type": "1",
+                                                    "created_at": "2022-02-08T11:04:03.000000Z",
+                                                    "updated_at": "2022-02-08T11:04:03.000000Z"
+                                                }
+                                            ],
+                                            "co_applicant": [
+                                                {
+                                                    "id": 20,
+                                                    "application_id": "35",
+                                                    "name": "sadiq",
+                                                    "phone_number": "01722105963",
+                                                    "present_address": "House 572/K, Matikata Main Road, Matikata, Dhaka Cantonment, Dhaka",
+                                                    "office_business_name": "barikoi",
+                                                    "office_business_address": "House 572/K, Matikata Main Road, Matikata, Dhaka Cantonment, Dhaka",
+                                                    "designation": "Software Eng.",
+                                                    "co_applicants_image": "storage/01722105963_86698.jpeg",
+                                                    "created_at": "2022-02-08T11:04:03.000000Z",
+                                                    "updated_at": "2022-02-08T11:04:03.000000Z"
+                                                }
+                                            ],
+                                            "guarantors": [
+                                                {
+                                                    "id": 7,
+                                                    "application_id": "35",
+                                                    "name": "test",
+                                                    "phone_number": "01681907337",
+                                                    "present_address": "House 572/K, Matikata Main Road, Matikata, Dhaka Cantonment, Dhaka",
+                                                    "office_business_name": "barikoi",
+                                                    "office_business_address": "House 572/K, Matikata Main Road, Matikata, Dhaka Cantonment, Dhaka",
+                                                    "designation": "test",
+                                                    "guarantor_image": "storage/01722105963_970.JPG",
+                                                    "created_at": "2022-02-08T11:04:03.000000Z",
+                                                    "updated_at": "2022-02-08T11:04:03.000000Z"
+                                                }
+                                            ],
+                                            "second_guarantor": []
+                                        },
+                                        "message": "Application information",
+                                        "status": 200
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/application-update/{id}": {
+            "get": {
+                "tags": [
+                    "CBL Trace API"
+                ],
+                "summary": "Application Update Details",
+                "description": "Application Update Details",
+                "operationId": "",
+                "parameters": [{
+                    "name": "id",
+                    "in": "path",
+                    "description": "Enter Application Id",
+                    "type": "number"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "id": {
+                                            "id": 38,
+                                            "user_id": "3307",
+                                            "application_id": "1302202238",
+                                            "name": "Ratul",
+                                            "phone_number": "01722105963",
+                                            "present_address": "Wasi Tower, House 572/K, Matikata Main Road, Matikata, Dhaka Cantonment, Dhaka",
+                                            "office_business_name": "Barikoi Technologies Limited",
+                                            "office_business_address": "Wasi Tower, House 572/K, Matikata Main Road, Matikata, Dhaka Cantonment, Dhaka",
+                                            "designation": "Jr. Software Engineer",
+                                            "applicant_image": "storage/01722105963_15759.jpg",
+                                            "created_at": "2022-02-13T05:06:09.000000Z",
+                                            "updated_at": "2022-02-13T05:06:09.000000Z",
+                                            "attachments": [
+                                                {
+                                                    "id": 5,
+                                                    "application_id": "38",
+                                                    "file_path": "storage/01722105963_37542.pdf",
+                                                    "type": "1",
+                                                    "created_at": "2022-02-13T05:06:09.000000Z",
+                                                    "updated_at": "2022-02-13T05:06:09.000000Z"
+                                                }
+                                            ],
+                                            "types": [
+                                                {
+                                                    "id": 31,
+                                                    "application_id": "38",
+                                                    "type": "2",
+                                                    "created_at": "2022-02-13T05:06:09.000000Z",
+                                                    "updated_at": "2022-02-13T05:06:09.000000Z"
+                                                }
+                                            ],
+                                            "co_applicant": [
+                                                {
+                                                    "id": 21,
+                                                    "application_id": "38",
+                                                    "name": "sadiq",
+                                                    "phone_number": "01722105963",
+                                                    "present_address": "House 416/2, Iqbal Road, West Shewrapara, Shewrapara, Mirpur, Dhaka",
+                                                    "office_business_name": "Barikoi Technologies Limited",
+                                                    "office_business_address": "Wasi Tower, House 572/K, Matikata Main Road, Matikata, Dhaka Cantonment, Dhaka",
+                                                    "designation": "Jr. SQA Engineer",
+                                                    "co_applicants_image": "storage/01722105963_90811.jpeg",
+                                                    "created_at": "2022-02-13T05:06:09.000000Z",
+                                                    "updated_at": "2022-02-13T05:06:09.000000Z"
+                                                }
+                                            ],
+                                            "guarantors": [
+                                                {
+                                                    "id": 8,
+                                                    "application_id": "38",
+                                                    "name": "Binoy",
+                                                    "phone_number": "01681906756",
+                                                    "present_address": "House 572/K, Matikata Main Road, Matikata, Dhaka Cantonment, Dhaka",
+                                                    "office_business_name": "Barikoi Technologies Limited",
+                                                    "office_business_address": "Wasi Tower, House 572/K, Matikata Main Road, Matikata, Dhaka Cantonment, Dhaka",
+                                                    "designation": "Sales",
+                                                    "guarantor_image": "storage/01722105963_338.jpg",
+                                                    "created_at": "2022-02-13T05:06:09.000000Z",
+                                                    "updated_at": "2022-02-13T05:06:09.000000Z"
+                                                }
+                                            ],
+                                            "second_guarantor": [
+                                                {
+                                                    "id": 2,
+                                                    "application_id": "38",
+                                                    "name": "Sojib",
+                                                    "phone_number": "01971906756",
+                                                    "present_address": "House 416/2, Iqbal Road, West Shewrapara, Shewrapara, Mirpur, Dhaka",
+                                                    "office_business_name": "Barikoi Technologies Limited",
+                                                    "office_business_address": "House 572/K, Matikata Main Road, Matikata, Dhaka Cantonment, Dhaka",
+                                                    "designation": "Software Engineer",
+                                                    "second_guarantors_image": "storage/01722105963_364.png",
+                                                    "created_at": "2022-02-13T05:06:09.000000Z",
+                                                    "updated_at": "2022-02-13T05:06:09.000000Z"
+                                                }
+                                            ]
+                                        },
+                                        "message": "Application Form update data",
+                                        "status": 200
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/application-updated/{id}": {
+            "post": {
+                "tags": [
+                    "CBL Trace API"
+                ],
+                "summary": "Application Updated",
+                "description": "Application Updated",
+                "operationId": "uploadFile",
+                "consumes": "multipart/form-data",
+                "parameters": [{
+                    "name": "city[]",
+                    "in": "path",
+                    "description": "Enter Update Application Type",
+                    "type": "number"
+                }, {
+                    "name": "name",
+                    "in": "path",
+                    "description": "Enter Update Applicant Name",
+                    "type": "text"
+                },{
+                    "name": "phone",
+                    "in": "path",
+                    "description": "Enter Update Applicant phone number",
+                    "type": "number"
+                },{
+                    "name": "address",
+                    "in": "path",
+                    "description": "Enter Update Applicant address",
+                    "type": "text"
+                },{
+                    "name": "officeName",
+                    "in": "path",
+                    "description": "Enter Update Applicant Office Name",
+                    "type": "text"
+                },{
+                    "name": "officeAddress",
+                    "in": "path",
+                    "description": "Enter Update Applicant Office Address",
+                    "type": "text"
+                },{
+                    "name": "designation",
+                    "in": "path",
+                    "description": "Enter Update Applicant Designation",
+                    "type": "text"
+                },{
+                    "name": "imgae_upload",
+                    "in": "formData",
+                    "description": "Applicant Update Image Upload",
+                    "required": false,
+                    "type": "file"
+                },{
+                    "name": "co_applicant_name",
+                    "in": "path",
+                    "description": "Enter Update Co-Applicant Name",
+                    "type": "text"
+                },{
+                    "name": "co_applicant_phone",
+                    "in": "path",
+                    "description": "Enter Update Co-Applicant Number",
+                    "type": "number"
+                },{
+                    "name": "co_applicant_address",
+                    "in": "path",
+                    "description": "Enter Update Co-Applicant Address",
+                    "type": "text"
+                },{
+                    "name": "co_applicant_officeName",
+                    "in": "path",
+                    "description": "Enter Update Co-Applicant Office Name",
+                    "type": "text"
+                },{
+                    "name": "co_applicant_designation",
+                    "in": "path",
+                    "description": "Enter Update Co-Applicant Designation",
+                    "type": "text"
+                },{
+                    "name": "co_applicant_image",
+                    "in": "formData",
+                    "description": "Update Co-Applicant Image Upload",
+                    "required": false,
+                    "type": "file"
+                }
+                ],
+                "requestBody": {
+                    "description": "Application Information provides",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "city[]",
+                                    "name",
+                                    "phone",
+                                    "address",
+                                    "officeName",
+                                    "officeAddress",
+                                    "designation",
+                                    "co_applicant_name",
+                                    "co_applicant_phone",
+                                    "co_applicant_address",
+                                    "co_applicant_officeName",
+                                    "co_applicant_designation",
+                                    "guarantor_name",
+                                    "guarantor_phone",
+                                    "guarantor_address",
+                                    "guarantor_officeName",
+                                    "guarantor_officeAddress",
+                                    "guarantor_designation",
+                                    "second_guarantor_name",
+                                    "second_guarantor_phone",
+                                    "second_guarantor_address"
+                                ],
+                                "properties": {
+                                    "city[]": {
+                                        "type": "string",
+                                        "format": "number",
+                                        "example": "1"
+                                    },
+                                    "name": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "Ratul"
+                                    },
+                                    "phone": {
+                                        "type": "string",
+                                        "format": "number",
+                                        "example": "01621213981"
+                                    },
+                                    "address": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "Wasi Tower, House 572/K, Matikata Main Road, Matikata, Dhaka Cantonment, Dhaka"
+                                    },
+                                    "officeName": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "Barikoi Technologies Limited"
+                                    },
+                                    "officeAddress": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "Wasi Tower, House 572/K, Matikata Main Road, Matikata, Dhaka Cantonment, Dhaka"
+                                    },
+                                    "designation": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "Jr. Software Engineer"
+                                    },
+                                    "co_applicant_name": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "Sadiq"
+                                    },
+                                    "co_applicant_phone": {
+                                        "type": "string",
+                                        "format": "number",
+                                        "example": "01722105963"
+                                    },
+                                    "co_applicant_address": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "House 416/2, Iqbal Road, West Shewrapara, Shewrapara, Mirpur, Dhaka"
+                                    },
+                                    "co_applicant_officeName": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "Barikoi Technologies Limited"
+                                    },
+                                    "co_applicant_officeAddress": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "Wasi Tower, House 572/K, Matikata Main Road, Matikata, Dhaka Cantonment, Dhaka"
+                                    },
+                                    "co_applicant_designation": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "Jr. SQA Engineer"
+                                    },
+                                    "guarantor_name": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "Binoy"
+                                    },
+                                    "guarantor_phone": {
+                                        "type": "string",
+                                        "format": "number",
+                                        "example": "01681906756"
+                                    },
+                                    "guarantor_address": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "House 572/K, Matikata Main Road, Matikata, Dhaka Cantonment, Dhaka"
+                                    },
+                                    "guarantor_officeName": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "Barikoi Technologies Limited"
+                                    },
+                                    "guarantor_officeAddress": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "House 572/K, Matikata Main Road, Matikata, Dhaka Cantonment, Dhaka"
+                                    },
+                                    "guarantor_designation": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "Sales"
+                                    },
+                                    "second_guarantor_name": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "Sojib"
+                                    },
+                                    "second_guarantor_phone": {
+                                        "type": "string",
+                                        "format": "number",
+                                        "example": "01971906756"
+                                    },
+                                    "second_guarantor_address": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "House 416/2, Iqbal Road, West Shewrapara, Shewrapara, Mirpur, Dhaka"
+                                    },
+                                    "second_guarantor_officeName": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "Barikoi Technologies Limited"
+                                    },
+                                    "second_guarantor_officeAddress": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "House 572/K, Matikata Main Road, Matikata, Dhaka Cantonment, Dhaka"
+                                    },
+                                    "second_guarantor_designation": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "Jr. Software Engineer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "data": {
+                                            "message": "Application Updated",
+                                            "status": 200
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/application-delete/{id}": {
+            "delete": {
+                "tags": [
+                    "CBL Trace API"
+                ],
+                "summary": "Application Delete",
+                "description": "Application Delete",
+                "operationId": "",
+                "parameters": [{
+                    "name": "id",
+                    "in": "path",
+                    "description": "Enter Application Id",
+                    "type": "number"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "Application deleted",
+                                        "status": 200
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "apiAuth": {
+                "type": "http",
+                "description": "",
+                "name": "",
+                "in": "header",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
+            }
+        }
+    }
+}

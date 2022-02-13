@@ -10,4 +10,20 @@ use Illuminate\Routing\Controller as BaseController;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+    /**
+
+
+     * @OA\Info(
+
+
+     * title="Your super ApplicationAPI",
+
+
+     * version="1.0.0",
+
+
+     * )
+
+
+     */
 }

@@ -16,7 +16,6 @@
       <th scope="col">Office/Business Name</th>
       <th scope="col">Office/Business Address</th>
       <th scope="col">Designation</th>
-      <th scope="col">NID No</th>
       <td scope="col" style="font-weight:700">Application Type</td>
       <th scope="col">Action</th>
     </tr>
@@ -31,16 +30,15 @@
     <td>{{$application_list->office_business_name}}</td>
     <td>{{$application_list->office_business_address}}</td>
     <td>{{$application_list->designation}}</td>
-    <td style="width:11%">{{$application_list->nid}}</td>
     <td style="width:9%">@foreach($application_list->types as $app_type)
     <ul class="for-ul">
     @if($app_type->type == 1)
       <li>City Amex</li>
     @endif
-    @if($app_type->type == 2) 
+    @if($app_type->type == 2)
       <li>City Visa</li>
     @endif
-    @if($app_type->type == 3) 
+    @if($app_type->type == 3)
       <li>City Loan</li>
     @endif
     </ul>
@@ -64,7 +62,7 @@
           <div style="padding:2px">
         <a href="{{route('pdf-download', $application_list->id)}}" class="btn btn-primary rounded"><i class="fa fa-download"></i></a>
         </div>
-    
+
     <div>
     </td>
   </tr>

@@ -16,7 +16,7 @@ Route::group(['prefix' => 'admin'], function() {
     Route::get('/logout', 'App\Http\Controllers\AdminController@logout')->name('logout');
 
 Route::group(['middleware' => ['auth:admin']], function() {
-   
+
     Route::get('/dashboard', 'App\Http\Controllers\InsertDataController@welcomePage')->name('welcome-page');
     Route::get('/app-type', 'App\Http\Controllers\InsertDataController@applicationTypeShow')->name('type-show');
     Route::post('/app-types', 'App\Http\Controllers\InsertDataController@storeType')->name('store-type');

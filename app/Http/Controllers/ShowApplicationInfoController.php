@@ -18,6 +18,11 @@ class ShowApplicationInfoController extends Controller
 {
     public function showData() {
         $application_list_data = Application::with('types')->get();
+//        return response()->json([
+//            'id' => $application_list_data,
+//            'message' => 'Application list',
+//            'status' => 200
+//        ]);
         return view('admin.application.list', compact('application_list_data'));
     }
     public function formUpdate($id) {
@@ -37,6 +42,15 @@ class ShowApplicationInfoController extends Controller
         $second_guarantor = SecondGuarantor::where('application_id', $id)
         ->first();
         $guarantor_data = $application_guarantor->guarantors;
+
+        $application_update_data = Application::with('attachments', 'types', 'co_applicant', 'guarantors', 'second_guarantor')
+            ->where('id', $id)
+            ->first();
+//        return response()->json([
+//            'id' => $application_update_data,
+//            'message' => 'Application Update Details',
+//            'status' => 200
+//        ]);
         return view('admin.application.form_update', compact('application', 'types', 'guarantor_data', 'co_applicant_information', 'second_guarantor'));
     }
     public function checkType($application_type_data) {
@@ -44,7 +58,7 @@ class ShowApplicationInfoController extends Controller
         foreach($application_type_data as $types) {
             if($types->type == 1) {
                 $new_arr[0] = 1;
-            } 
+            }
             if($types->type == 2) {
                 $new_arr[1] = 1;
             }
@@ -53,7 +67,7 @@ class ShowApplicationInfoController extends Controller
             }
         }
         return $new_arr;
-    }   
+    }
 
     private function updateApplicant(Request $request, $id, FileHandler $file_handler)
     {
@@ -64,10 +78,10 @@ class ShowApplicationInfoController extends Controller
             'office_business_name' => $request->officeName,
             'office_business_address' => $request->officeAddress,
             'designation' => $request->designation,
-            'nid' => $request->nid
+//            'nid' => $request->nid
         ];
-        
-        if($request->hasFile('applicant_image')) { 
+
+        if($request->hasFile('applicant_image')) {
             $file_name = $request->phone.'_'.rand(1000,9999);
             $image_file_path = $file_handler->uploadFile($request->file('applicant_image'),$file_name);
             $application_update_data['applicant_image'] = $image_file_path;
@@ -85,9 +99,9 @@ class ShowApplicationInfoController extends Controller
             'office_business_name' => $request->co_applicant_officeName,
             'office_business_address' => $request->co_applicant_officeAddress,
             'designation' => $request->co_applicant_designation,
-            'nid_number' => $request->co_applicant_nid,
+//            'nid_number' => $request->co_applicant_nid,
         ];
-        if($request->hasFile('co_applicant_image')) { 
+        if($request->hasFile('co_applicant_image')) {
             $file_name = $request->phone.'_'.rand(1000,9999);
             $image_file_path = $file_handler->uploadFile($request->file('co_applicant_image'),$file_name);
             $co_applicant_update['co_applicants_image'] = $image_file_path;
@@ -106,10 +120,10 @@ class ShowApplicationInfoController extends Controller
             'office_business_name' => $request->guarantor_officeName,
             'office_business_address' => $request->guarantor_officeAddress,
             'designation' => $request->guarantor_designation,
-            'nid' => $request->guarantor_nid,
+//            'nid' => $request->guarantor_nid,
         ];
 
-        if($request->hasFile('guarantor_image')) { 
+        if($request->hasFile('guarantor_image')) {
             $file_name = $request->phone.'_'.rand(1000,9999);
             $image_file_path = $file_handler->uploadFile($request->file('guarantor_image'),$file_name);
             $guarantor_data_update['guarantor_image'] = $image_file_path;
@@ -128,10 +142,10 @@ class ShowApplicationInfoController extends Controller
             'office_business_name' => $request->second_guarantor_officeName,
             'office_business_address' => $request->second_guarantor_officeAddress,
             'designation' => $request->second_guarantor_designation,
-            'nid_number' => $request->second_guarantor_nid
+//            'nid_number' => $request->second_guarantor_nid
         ];
 
-        if($request->hasFile('second_guarantor_image')) { 
+        if($request->hasFile('second_guarantor_image')) {
             $file_name = $request->phone.'_'.rand(1000,9999);
             $image_file_path = $file_handler->uploadFile($request->file('second_guarantor_image'),$file_name);
             $second_guarantor_update['second_guarantors_image'] = $image_file_path;
@@ -149,7 +163,7 @@ class ShowApplicationInfoController extends Controller
             'officeName' => 'max:255',
             'officeAddress' => 'max:255',
             'designation' => 'max:255',
-            'nid' => 'numeric',
+//            'nid' => 'numeric',
             'loi_files' => 'max:10000',
             'bank_withdrawal_files' => 'max:10000',
             'rental_deed_files' => 'max:10000',
@@ -157,39 +171,39 @@ class ShowApplicationInfoController extends Controller
             'co_applicant_name' => 'max:255',
             'co_applicant_phone' => 'nullable|regex:/\+?(88)?01[3456789][0-9]{8}\b/',
             'co_applicant_address' => 'max:255',
-            'co_applicant_nid_address' => 'max:255',
+//            'co_applicant_nid_address' => 'max:255',
             'co_applicant_officeName' => 'max:255',
             'co_applicant_officeAddress' => 'max:255',
             'co_applicant_designation' => 'max:255',
-            'co_applicant_nid' => 'nullable',
+//            'co_applicant_nid' => 'nullable',
             'co_applicant_image' => 'nullable|mimes:jpg,png',
             'guarantor_name' => 'max:255',
             'guarantor_phone' => 'nullable|regex:/\+?(88)?01[3456789][0-9]{8}\b/',
             'guarantor_address' => 'max:255',
-            'nid_address' => 'max:255',
+//            'nid_address' => 'max:255',
             'guarantor_officeName' => 'max:255',
             'guarantor_officeAddress' => 'max:255',
             'guarantor_designation' => 'max:255',
-            'guarantor_nid' => 'nullable',
+//            'guarantor_nid' => 'nullable',
             'guarantor_image' => 'nullable|mimes:jpg,png',
             'second_guarantor_name' => 'max:255',
             'second_guarantor_phone' => 'nullable|regex:/\+?(88)?01[3456789][0-9]{8}\b/',
             'second_guarantor_address' => 'max:255',
-            'second_nid_address' => 'max:255',
+//            'second_nid_address' => 'max:255',
             'second_guarantor_officeName' => 'max:255',
             'second_guarantor_officeAddress' => 'max:255',
             'second_guarantor_designation' => 'max:255',
-            'second_guarantor_nid' => 'nullable',
+//            'second_guarantor_nid' => 'nullable',
             'second_guarantor_image' => 'nullable|mimes:jpg,png',
         ]);
-        
+
         $file_handler = new FileHandler();
 
         $this->updateApplicant($request, $id, $file_handler);
-        
+
         $application = Application::find($id);
         $application->types()->delete();
-        
+
         foreach($request->city as $type) {
             $insertTypes = Type::create([
                 'application_id' => $id,
@@ -242,8 +256,12 @@ class ShowApplicationInfoController extends Controller
                     'type' => 3
                 ]);
             }
-        }    
-        return redirect()->route('application-list');
+        }
+        return response()->json([
+            'message' => 'Application Updated',
+            'status' => 200
+        ]);
+//        return redirect()->route('application-list');
     }
     public function applicationView($id) {
         $applicant_data = Application::with('types')
@@ -260,10 +278,19 @@ class ShowApplicationInfoController extends Controller
         $second_guarantor = SecondGuarantor::where('application_id', $id)
         ->first();
         $for_types = $applicant_data->types;
+
+        $applications = Application::with('types', 'attachments', 'co_applicant', 'guarantors', 'second_guarantor')
+            ->where('id', $id)
+            ->first();
+        return response()->json([
+            'id' => $applications,
+            'message' => 'Application information',
+            'status' => 200
+        ]);
         return view('admin.application.application_view', compact('applicant_data', 'guarantor_data', 'for_types', 'app_attach', 'co_applicant_information', 'second_guarantor'));
     }
     public function applicationDelete($id) {
-        $application_delete = Application::where('id', $id)
+        $application_delete_old = Application::where('id', $id)
         ->delete();
         Attachment::where('application_id', $id)
         ->delete();
@@ -271,6 +298,15 @@ class ShowApplicationInfoController extends Controller
         ->delete();
         GuarantorNid::where('application_id', $id)
         ->delete();
+        CoApplicant::where('application_id', $id)
+            ->delete();
+        $application_delete = Application::with('attachments', 'types', 'guarantors', 'co_applicant')
+            ->where('application_id', $id)
+            ->delete();
+        return response()->json([
+            'message' => 'Application deleted',
+            'status' => 200
+        ]);
         return redirect()->route('application-list');
     }
     public function fileDelete($id) {
@@ -300,7 +336,7 @@ class ShowApplicationInfoController extends Controller
         // ->first();
         $second_guarantor_data = $applicants_data->second_guarantor;
         $pdf = mPDF::loadView('for_pdf', compact('applicants_data', 'guarantor_data', 'co_applicant_data', 'second_guarantor_data'));
-    
+
         return $pdf->download('application.pdf');
     }
     public function download($id) {

@@ -10,7 +10,7 @@
         </div>
     </div>
     <h2 class="text-center mb-5 pb-5 application-info">Application Information <hr class="hr-edit"></h2>
-    
+
     <h3 class="text-center mb-5">Applicant's Information <hr class="applicant-edit"></h3>
     <div class="text-center mb-3">
       <img src="{{URL::asset($applicant_data->applicant_image)}}" width="21%" height="200px" alt="">
@@ -35,10 +35,10 @@
       <td>Present Address</td>
       <td>{{$applicant_data->present_address}}</td>
     </tr>
-    <tr>
-      <td>Office/Business Name</td>
-      <td>{{$applicant_data->nid_address}}</td>
-    </tr>
+{{--    <tr>--}}
+{{--      <td>Office/Business Name</td>--}}
+{{--      <td>{{$applicant_data->nid_address}}</td>--}}
+{{--    </tr>--}}
     <tr>
       <td>Office/Business Name</td>
       <td>{{$applicant_data->office_business_name}}</td>
@@ -51,10 +51,10 @@
       <td>Designation</td>
       <td>{{$applicant_data->designation}}</td>
     </tr>
-    <tr>
-      <td>NID Number</td>
-      <td>{{$applicant_data->nid}}</td>
-    </tr>
+{{--    <tr>--}}
+{{--      <td>NID Number</td>--}}
+{{--      <td>{{$applicant_data->nid}}</td>--}}
+{{--    </tr>--}}
     <tr>
       <td>Application Type</td>
       <td>@foreach($applicant_data->types as $app_type)
@@ -62,10 +62,10 @@
     @if($app_type->type == 1)
       <li>City Amex</li>
     @endif
-    @if($app_type->type == 2) 
+    @if($app_type->type == 2)
       <li>City Visa</li>
     @endif
-    @if($app_type->type == 3) 
+    @if($app_type->type == 3)
       <li>City Loan</li>
     @endif
     </ul>
@@ -75,12 +75,12 @@
     <tr>
     <td>File</td>
     <td style="padding: 0">
-    
+
           <div style="display: flex; flex-direction: column">
             @foreach($app_attach as $attachment)
               <div style="border: 1px solid #e3e6f0; padding: 6px 0px 6px 10px;">
                 <a style="" href="{{url($attachment->file_path)}}" target="_blank" style="text-decoration:none">
-                      @if($attachment->type == 1) 
+                      @if($attachment->type == 1)
                           Loi
                       @endif
                       @if($attachment->type == 2)
@@ -94,11 +94,11 @@
               </div>
             @endforeach
           </div>
-            
-           
-          
+
+
+
         </table>
-        
+
     </td>
     </tr>
   </tbody>
@@ -107,7 +107,7 @@
 @if ($co_applicant_information == null)
 @else
 <h3 class="text-center mb-5">Co-Applicant's Information <hr class="co_applicant-edit"></h3>
-<div class="text-center mb-3"> 
+<div class="text-center mb-3">
   <img src="{{URL::asset(!is_null($co_applicant_information)? $co_applicant_information->co_applicants_image : '')}}" width="21%" height="200px" alt="">
     </div>
     <table class="table table-bordered table-modify mx-3 mb-5">
@@ -130,11 +130,11 @@
       <td>Present Address</td>
       <td>{{(!is_null($co_applicant_information)? $co_applicant_information->present_address : '')}}</td>
     </tr>
-    <tr>
-      <td>Office/Business Name</td>
-      <td>{{(!is_null($co_applicant_information)? $co_applicant_information->nid_address : '')}}</td>
-    </tr>
-    <tr>
+{{--    <tr>--}}
+{{--      <td>Office/Business Name</td>--}}
+{{--      <td>{{(!is_null($co_applicant_information)? $co_applicant_information->nid_address : '')}}</td>--}}
+{{--    </tr>--}}
+{{--    <tr>--}}
       <td>Office/Business Name</td>
       <td>{{(!is_null($co_applicant_information)? $co_applicant_information->office_business_name : '')}}</td>
     </tr>
@@ -146,10 +146,10 @@
       <td>Designation</td>
       <td>{{(!is_null($co_applicant_information)? $co_applicant_information->designation : '')}}</td>
     </tr>
-    <tr>
-      <td>NID Number</td>
-      <td>{{(!is_null($co_applicant_information)? $co_applicant_information->nid_number : '')}}</td>
-    </tr>
+{{--    <tr>--}}
+{{--      <td>NID Number</td>--}}
+{{--      <td>{{(!is_null($co_applicant_information)? $co_applicant_information->nid_number : '')}}</td>--}}
+{{--    </tr>--}}
   </tbody>
 </table>
   @endif
@@ -179,10 +179,10 @@
         <td>Present Address</td>
         <td>{{(!is_null($guarantor_data) ? $guarantor_data->present_address : '')}}</td>
       </tr>
-      <tr>
-        <td>Office/Business Name</td>
-        <td>{{(!is_null($guarantor_data) ? $guarantor_data->nid_address : '')}}</td>
-      </tr>
+{{--      <tr>--}}
+{{--        <td>Office/Business Name</td>--}}
+{{--        <td>{{(!is_null($guarantor_data) ? $guarantor_data->nid_address : '')}}</td>--}}
+{{--      </tr>--}}
       <tr>
         <td>Office/Business Name</td>
         <td>{{(!is_null($guarantor_data) ? $guarantor_data->office_business_name : '')}}</td>
@@ -195,15 +195,15 @@
         <td>Designation</td>
         <td>{{(!is_null($guarantor_data) ? $guarantor_data->designation : '')}}</td>
       </tr>
-      <tr>
-        <td>NID Number</td>
-        <td>{{(!is_null($guarantor_data) ? $guarantor_data->nid : '')}}</td>
-      </tr>
+{{--      <tr>--}}
+{{--        <td>NID Number</td>--}}
+{{--        <td>{{(!is_null($guarantor_data) ? $guarantor_data->nid : '')}}</td>--}}
+{{--      </tr>--}}
     </tbody>
   </table>
 <!--2nd guarantor-->
 @if ($second_guarantor == null)
-@else 
+@else
 <h3 class="text-center mb-5">2nd Guarantor's Information <hr class="guarantor-edit"></h3>
 <div class="text-center mb-3">
         <img src="{{URL::asset(!is_null($second_guarantor)? $second_guarantor->second_guarantors_image : '')}}" width="21%" height="200px" alt="">
@@ -228,10 +228,10 @@
       <td>Present Address</td>
       <td>{{(!is_null($second_guarantor)? $second_guarantor->present_address : '')}}</td>
     </tr>
-    <tr>
-      <td>Office/Business Name</td>
-      <td>{{(!is_null($second_guarantor)? $second_guarantor->nid_address : '')}}</td>
-    </tr>
+{{--    <tr>--}}
+{{--      <td>Office/Business Name</td>--}}
+{{--      <td>{{(!is_null($second_guarantor)? $second_guarantor->nid_address : '')}}</td>--}}
+{{--    </tr>--}}
     <tr>
       <td>Office/Business Name</td>
       <td>{{(!is_null($second_guarantor)? $second_guarantor->office_business_name : '')}}</td>
@@ -244,10 +244,10 @@
       <td>Designation</td>
       <td>{{(!is_null($second_guarantor)? $second_guarantor->designation : '')}}</td>
     </tr>
-    <tr>
-      <td>NID Number</td>
-      <td>{{(!is_null($second_guarantor)? $second_guarantor->nid_number : '')}}</td>
-    </tr>
+{{--    <tr>--}}
+{{--      <td>NID Number</td>--}}
+{{--      <td>{{(!is_null($second_guarantor)? $second_guarantor->nid_number : '')}}</td>--}}
+{{--    </tr>--}}
   </tbody>
 </table>
 @endif

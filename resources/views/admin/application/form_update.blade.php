@@ -15,7 +15,7 @@
     @csrf
         <h3 class="text-center my-4">Applicant's Information</h3>
         <div class="form-group row">
-          <label for="text1" class="col-3 col-form-label">Name</label> 
+          <label for="text1" class="col-3 col-form-label">Name</label>
           <div class="col-9">
             <input id="text1" name="name" type="text" class="form-control" value="{{$application->name}}">
             @if($errors->has('name'))
@@ -24,7 +24,7 @@
           </div>
         </div>
         <div class="form-group row">
-          <label for="text2" class="col-3 col-form-label">Phone Number</label> 
+          <label for="text2" class="col-3 col-form-label">Phone Number</label>
           <div class="col-9">
             <input id="text2" name="phone" type="text" class="form-control" value="{{$application->phone_number}}" pattern="\+?(88)?01[3456789][0-9]{8}\b" required>
             @if($errors->has('phone'))
@@ -33,7 +33,7 @@
           </div>
         </div>
         <div class="form-group row">
-          <label for="text5" class="col-3 col-form-label">Present Address</label> 
+          <label for="text5" class="col-3 col-form-label">Present Address</label>
           <div class="col-9">
             <input id="text5" name="address" type="text" class="form-control" value="{{$application->present_address}}">
             @if($errors->has('address'))
@@ -42,7 +42,7 @@
           </div>
         </div>
         <div class="form-group row">
-          <label for="text3" class="col-3 col-form-label">Office/Business Name</label> 
+          <label for="text3" class="col-3 col-form-label">Office/Business Name</label>
           <div class="col-9">
             <input id="text3" name="officeName" type="text" class="form-control" value="{{$application->office_business_name}}">
             @if($errors->has('officeName'))
@@ -51,7 +51,7 @@
           </div>
         </div>
         <div class="form-group row">
-          <label for="text" class="col-3 col-form-label">Office/Business Address</label> 
+          <label for="text" class="col-3 col-form-label">Office/Business Address</label>
           <div class="col-9">
             <input id="text" name="officeAddress" type="text" class="form-control" value="{{$application->office_business_address}}">
             @if($errors->has('officeAddress'))
@@ -60,7 +60,7 @@
           </div>
         </div>
         <div class="form-group row">
-          <label for="text6" class="col-3 col-form-label">Designation</label> 
+          <label for="text6" class="col-3 col-form-label">Designation</label>
           <div class="col-9">
             <input id="text6" name="designation" type="text" class="form-control" value="{{$application->designation}}">
             @if($errors->has('designation'))
@@ -68,28 +68,28 @@
             @endif
           </div>
         </div>
+{{--        <div class="form-group row">--}}
+{{--          <label for="text4" class="col-3 col-form-label">NID</label> --}}
+{{--          <div class="col-9">--}}
+{{--            <input id="text4" name="nid" type="text" class="form-control" value="{{$application->nid}}">--}}
+{{--            @if($errors->has('nid'))--}}
+{{--              {{$errors->first('nid')}}--}}
+{{--            @endif--}}
+{{--          </div>--}}
+{{--        </div>--}}
         <div class="form-group row">
-          <label for="text4" class="col-3 col-form-label">NID</label> 
-          <div class="col-9">
-            <input id="text4" name="nid" type="text" class="form-control" value="{{$application->nid}}">
-            @if($errors->has('nid'))
-              {{$errors->first('nid')}}
-            @endif
-          </div>
-        </div>
-        <div class="form-group row">
-          <label class="col-3">Application Type</label> 
+          <label class="col-3">Application Type</label>
           <div class="col-9">
             <div class="custom-control custom-checkbox custom-control-inline">
-              <input id="checkbox_0" type="checkbox" name="city[]" class="form-check-input" value="1" {{ $types[0] ? "checked" : "" }}> 
+              <input id="checkbox_0" type="checkbox" name="city[]" class="form-check-input" value="1" {{ $types[0] ? "checked" : "" }}>
               <label for="checkbox_0" class="">City Amex</label>
             </div>
             <div class="custom-control custom-checkbox custom-control-inline">
-              <input id="checkbox_1" type="checkbox" name="city[]" class="form-check-input" value="2" {{ $types[1] ? "checked" : "" }}> 
+              <input id="checkbox_1" type="checkbox" name="city[]" class="form-check-input" value="2" {{ $types[1] ? "checked" : "" }}>
               <label for="checkbox_1" class="">City Visa</label>
             </div>
             <div class="custom-control custom-checkbox custom-control-inline">
-              <input id="checkbox_2" type="checkbox" name="city[]" class="form-check-input" value="3" {{ $types[2] ? "checked" : "" }}> 
+              <input id="checkbox_2" type="checkbox" name="city[]" class="form-check-input" value="3" {{ $types[2] ? "checked" : "" }}>
               <label for="checkbox_2" class="">City Loan</label>
             </div>
           </div>
@@ -108,7 +108,7 @@
         @else
         <h3 class="text-center my-4">Co-Applicant's Information</h3>
         <div class="form-group row">
-          <label for="text1" class="col-3 col-form-label">Name</label> 
+          <label for="text1" class="col-3 col-form-label">Name</label>
           <div class="col-9">
             <input id="text1" name="co_applicant_name" type="text" class="form-control" value="{{!is_null($co_applicant_information) ? $co_applicant_information->name : ''}}">
             @if($errors->has('co_applicant_name'))
@@ -117,7 +117,7 @@
           </div>
         </div>
         <div class="form-group row">
-          <label for="text2" class="col-3 col-form-label">Phone Number</label> 
+          <label for="text2" class="col-3 col-form-label">Phone Number</label>
           <div class="col-9">
             <input id="text2" name="co_applicant_phone" type="text" class="form-control" value="{{!is_null($co_applicant_information) ? $co_applicant_information->phone_number : ''}}">
             @if($errors->has('co_applicant_phone'))
@@ -126,7 +126,7 @@
           </div>
         </div>
         <div class="form-group row">
-          <label for="text5" class="col-3 col-form-label">Present Address</label> 
+          <label for="text5" class="col-3 col-form-label">Present Address</label>
           <div class="col-9">
             <input id="text5" name="co_applicant_address" type="text" class="form-control" value="{{!is_null($co_applicant_information) ? $co_applicant_information->present_address : ''}}">
             @if($errors->has('co_applicant_address'))
@@ -135,7 +135,7 @@
           </div>
         </div>
         <div class="form-group row">
-          <label for="text3" class="col-3 col-form-label">Office/Business Name</label> 
+          <label for="text3" class="col-3 col-form-label">Office/Business Name</label>
           <div class="col-9">
             <input id="text3" name="co_applicant_officeName" type="text" class="form-control" value="{{!is_null($co_applicant_information) ? $co_applicant_information->office_business_name : ''}}">
             @if($errors->has('co_applicant_officeName'))
@@ -144,7 +144,7 @@
           </div>
         </div>
         <div class="form-group row">
-          <label for="text" class="col-3 col-form-label">Office/Business Address</label> 
+          <label for="text" class="col-3 col-form-label">Office/Business Address</label>
           <div class="col-9">
             <input id="text" name="co_applicant_officeAddress" type="text" class="form-control" value="{{!is_null($co_applicant_information) ? $co_applicant_information->office_business_address : ''}}">
             @if($errors->has('co_applicant_officeAddress'))
@@ -153,7 +153,7 @@
           </div>
         </div>
         <div class="form-group row">
-          <label for="text6" class="col-3 col-form-label">Designation</label> 
+          <label for="text6" class="col-3 col-form-label">Designation</label>
           <div class="col-9">
             <input id="text6" name="co_applicant_designation" type="text" class="form-control" value="{{!is_null($co_applicant_information) ? $co_applicant_information->designation : ''}}">
             @if($errors->has('co_applicant_designation'))
@@ -161,15 +161,15 @@
             @endif
           </div>
         </div>
-        <div class="form-group row">
-          <label for="text4" class="col-3 col-form-label">NID</label> 
-          <div class="col-9">
-            <input id="text4" name="co_applicant_nid" type="text" class="form-control" value="{{!is_null($co_applicant_information) ? $co_applicant_information->nid_number : ''}}">
-            @if($errors->has('co_applicant_nid'))
-              {{$errors->first('co_applicant_nid')}}
-            @endif
-          </div>
-        </div>
+{{--        <div class="form-group row">--}}
+{{--          <label for="text4" class="col-3 col-form-label">NID</label>--}}
+{{--          <div class="col-9">--}}
+{{--            <input id="text4" name="co_applicant_nid" type="text" class="form-control" value="{{!is_null($co_applicant_information) ? $co_applicant_information->nid_number : ''}}">--}}
+{{--            @if($errors->has('co_applicant_nid'))--}}
+{{--              {{$errors->first('co_applicant_nid')}}--}}
+{{--            @endif--}}
+{{--          </div>--}}
+{{--        </div>--}}
         <div class="row">
           <div class="col-sm-3">Image</div>
           <div class="col-sm-9">
@@ -180,11 +180,11 @@
           </div>
         </div>
         @endif
-        
+
         <!--1st Guarantor Information-->
         <h3 class="text-center my-4">1st Guarantor's Information</h3>
         <div class="form-group row">
-          <label for="text1" class="col-3 col-form-label">Name</label> 
+          <label for="text1" class="col-3 col-form-label">Name</label>
           <div class="col-9">
             <input id="text1" name="guarantor_name" type="text" class="form-control" value="{{$guarantor_data[0]->name}}">
             @if($errors->has('guarantor_name'))
@@ -193,7 +193,7 @@
           </div>
         </div>
         <div class="form-group row">
-          <label for="text2" class="col-3 col-form-label">Phone Number</label> 
+          <label for="text2" class="col-3 col-form-label">Phone Number</label>
           <div class="col-9">
             <input id="text2" name="guarantor_phone" type="text" class="form-control" value="{{$guarantor_data[0]->phone_number}}">
             @if($errors->has('guarantor_phone'))
@@ -202,7 +202,7 @@
           </div>
         </div>
         <div class="form-group row">
-          <label for="text5" class="col-3 col-form-label">Present Address</label> 
+          <label for="text5" class="col-3 col-form-label">Present Address</label>
           <div class="col-9">
             <input id="text5" name="guarantor_address" type="text" class="form-control" value="{{$guarantor_data[0]->present_address}}">
             @if($errors->has('guarantor_address'))
@@ -211,7 +211,7 @@
           </div>
         </div>
         <div class="form-group row">
-          <label for="text3" class="col-3 col-form-label">Office/Business Name</label> 
+          <label for="text3" class="col-3 col-form-label">Office/Business Name</label>
           <div class="col-9">
             <input id="text3" name="guarantor_officeName" type="text" class="form-control" value="{{$guarantor_data[0]->office_business_name}}">
             @if($errors->has('guarantor_officeName'))
@@ -220,7 +220,7 @@
           </div>
         </div>
         <div class="form-group row">
-          <label for="text" class="col-3 col-form-label">Office/Business Address</label> 
+          <label for="text" class="col-3 col-form-label">Office/Business Address</label>
           <div class="col-9">
             <input id="text" name="guarantor_officeAddress" type="text" class="form-control" value="{{$guarantor_data[0]->office_business_address}}">
             @if($errors->has('guarantor_officeAddress'))
@@ -229,7 +229,7 @@
           </div>
         </div>
         <div class="form-group row">
-          <label for="text6" class="col-3 col-form-label">Designation</label> 
+          <label for="text6" class="col-3 col-form-label">Designation</label>
           <div class="col-9">
             <input id="text6" name="guarantor_designation" type="text" class="form-control" value="{{$guarantor_data[0]->designation}}">
             @if($errors->has('guarantor_designation'))
@@ -237,15 +237,15 @@
             @endif
           </div>
         </div>
-        <div class="form-group row">
-          <label for="text4" class="col-3 col-form-label">NID</label> 
-          <div class="col-9">
-            <input id="text4" name="guarantor_nid" type="text" class="form-control" value="{{$guarantor_data[0]->nid}}">
-            @if($errors->has('guarantor_nid'))
-              {{$errors->first('guarantor_nid')}}
-            @endif
-          </div>
-        </div>
+{{--        <div class="form-group row">--}}
+{{--          <label for="text4" class="col-3 col-form-label">NID</label>--}}
+{{--          <div class="col-9">--}}
+{{--            <input id="text4" name="guarantor_nid" type="text" class="form-control" value="{{$guarantor_data[0]->nid}}">--}}
+{{--            @if($errors->has('guarantor_nid'))--}}
+{{--              {{$errors->first('guarantor_nid')}}--}}
+{{--            @endif--}}
+{{--          </div>--}}
+{{--        </div>--}}
         <div class="row">
           <div class="col-sm-3">Image</div>
           <div class="col-sm-9">
@@ -260,7 +260,7 @@
         @else
         <h3 class="text-center my-4">2nd Guarantor's Information</h3>
         <div class="form-group row">
-          <label for="text1" class="col-3 col-form-label">Name</label> 
+          <label for="text1" class="col-3 col-form-label">Name</label>
           <div class="col-9">
             <input id="text1" name="second_guarantor_name" type="text" class="form-control" value="{{!is_null($second_guarantor) ? $second_guarantor->name : ''}}">
             @if($errors->has('second_guarantor_name'))
@@ -269,7 +269,7 @@
           </div>
         </div>
         <div class="form-group row">
-          <label for="text2" class="col-3 col-form-label">Phone Number</label> 
+          <label for="text2" class="col-3 col-form-label">Phone Number</label>
           <div class="col-9">
             <input id="text2" name="second_guarantor_phone" type="text" class="form-control" value="{{!is_null($second_guarantor) ? $second_guarantor->phone_number : ''}}">
             @if($errors->has('second_guarantor_phone'))
@@ -278,7 +278,7 @@
           </div>
         </div>
         <div class="form-group row">
-          <label for="text5" class="col-3 col-form-label">Present Address</label> 
+          <label for="text5" class="col-3 col-form-label">Present Address</label>
           <div class="col-9">
             <input id="text5" name="second_guarantor_address" type="text" class="form-control" value="{{ !is_null($second_guarantor) ? $second_guarantor->present_address : ''}}">
             @if($errors->has('second_guarantor_address'))
@@ -287,7 +287,7 @@
           </div>
         </div>
         <div class="form-group row">
-          <label for="text3" class="col-3 col-form-label">Office/Business Name</label> 
+          <label for="text3" class="col-3 col-form-label">Office/Business Name</label>
           <div class="col-9">
             <input id="text3" name="second_guarantor_officeName" type="text" class="form-control" value="{{!is_null($second_guarantor) ? $second_guarantor->office_business_name : ''}}">
             @if($errors->has('second_guarantor_officeName'))
@@ -296,7 +296,7 @@
           </div>
         </div>
         <div class="form-group row">
-          <label for="text" class="col-3 col-form-label">Office/Business Address</label> 
+          <label for="text" class="col-3 col-form-label">Office/Business Address</label>
           <div class="col-9">
             <input id="text" name="second_guarantor_officeAddress" type="text" class="form-control" value="{{!is_null($second_guarantor) ? $second_guarantor->office_business_address : ''}}">
             @if($errors->has('second_guarantor_officeAddress'))
@@ -305,7 +305,7 @@
           </div>
         </div>
         <div class="form-group row">
-          <label for="text6" class="col-3 col-form-label">Designation</label> 
+          <label for="text6" class="col-3 col-form-label">Designation</label>
           <div class="col-9">
             <input id="text6" name="second_guarantor_designation" type="text" class="form-control" value="{{!is_null($second_guarantor) ? $second_guarantor->designation : ''}}">
             @if($errors->has('second_guarantor_designation'))
@@ -313,15 +313,15 @@
             @endif
           </div>
         </div>
-        <div class="form-group row">
-          <label for="text4" class="col-3 col-form-label">NID</label> 
-          <div class="col-9">
-            <input id="text4" name="second_guarantor_nid" type="text" class="form-control" value="{{!is_null($second_guarantor) ? $second_guarantor->nid_number : ''}}">
-            @if($errors->has('second_guarantor_nid'))
-              {{$errors->first('second_guarantor_nid')}}
-            @endif
-          </div>
-        </div>
+{{--        <div class="form-group row">--}}
+{{--          <label for="text4" class="col-3 col-form-label">NID</label>--}}
+{{--          <div class="col-9">--}}
+{{--            <input id="text4" name="second_guarantor_nid" type="text" class="form-control" value="{{!is_null($second_guarantor) ? $second_guarantor->nid_number : ''}}">--}}
+{{--            @if($errors->has('second_guarantor_nid'))--}}
+{{--              {{$errors->first('second_guarantor_nid')}}--}}
+{{--            @endif--}}
+{{--          </div>--}}
+{{--        </div>--}}
         <div class="row">
           <div class="col-sm-3">Image</div>
           <div class="col-sm-9">
@@ -332,7 +332,7 @@
           </div>
         </div>
         @endif
-        
+
         <!--Attachemnts-->
         <h2 class="text-center mb-3">Attachments</h2>
         <div class="row">
@@ -364,13 +364,13 @@
         </div>
         <div class="form-group row">
           <div class="col-md-4 text-center">
-          
+
           </div>
           <div class="col-md-4 text-center">
           <button type="submit" class="btn btn-primary">Update</button>
           </div>
           <div class="col-md-4">
-          
+
           </div>
         </div>
       </form>
